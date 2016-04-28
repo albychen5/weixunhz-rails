@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # User Installed Gems
 gem "paperclip", "~> 5.0.0.beta1" #Paperclip gem for image attachments
+gem 'simple_form' #Simple Form for forms ...
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
