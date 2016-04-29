@@ -1,0 +1,7 @@
+<h1>Edit</h1>
+<%= image_tag @event.image.url(:medium), class: 'img-responsive' %>
+<%= simple_form_for @event do |f| %>
+  <%= f.input :image %>
+  <%= f.input :name %>
+  <%= f.button :submit %>
+<% end %>
