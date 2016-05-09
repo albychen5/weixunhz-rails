@@ -27,6 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.6' #Bootstrap Install
 gem "paperclip", "~> 5.0.0.beta1" #Paperclip gem for image attachments
 gem 'simple_form' #Simple Form for forms ...
+gem 'capybara' #test framework
+gem 'factory_girl_rails' #factory creation gem
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -40,6 +42,7 @@ gem 'simple_form' #Simple Form for forms ...
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails', '~>3.0'
 end
 
 group :development do

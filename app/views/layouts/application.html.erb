@@ -9,7 +9,7 @@
 <body>
 <div class="container">
 	<% flash.each do |name, message| %>
-		<%= content_tag :div, msg, class: [:alert, alert_for(name)] %>
+		<%= content_tag :div, message, class: [:alert, alert_for(name)] %>
 	<% end %>
 	<%= yield %>
 </div>

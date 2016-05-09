@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-	before_action :set_post, only: [:show, :edit, :update, :destroy]
+	before_action :set_event, only: [:show, :edit, :update, :destroy]
 
 	def index
 		@events = Event.all
@@ -13,11 +13,12 @@ class EventsController < ApplicationController
 	end
 
 	def create
-		if @event = Event.create(event_params)
+		@event = Event.create(event_params)
+		if @event.save
 			flash[:success] = "Event created!"
-			redirect_to events_path
+			redirect_to @event
 		else
-			flash[:alert] = "Event could not be created."
+			flash.now[:alert] = "Event could not be created."
 			render :new
 		end
 	end
@@ -28,20 +29,24 @@ class EventsController < ApplicationController
 	def update
 		if @event.update(event_params)
 			flash[:success] = "Event updated!"
-			redirect_to events_path
+			redirect_to @event
 		else
-			flash[:alert] = "Event could not be updated."
+			flash.now[:alert] = "Event could not be updated."
 			render :edit
 		end
 	end
 
 	def destroy
-		@event.destroy
-		redirect_to root_path
+		if @event.destroy
+			flash[:success] = "Event deleted!"
+			redirect_to root_path
+		else
+			flash.now[:alert] = "Event could not be deleted"
+		end
 	end
 
 	private
-	def set_post
+	def set_event
 		@event = Event.find(params[:id])
 	end
 
