@@ -29,6 +29,7 @@ gem "paperclip", "~> 5.0.0.beta1" #Paperclip gem for image attachments
 gem 'simple_form' #Simple Form for forms ...
 gem 'capybara' #test framework
 gem 'factory_girl_rails' #factory creation gem
+gem 'devise' #authentication gem
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
