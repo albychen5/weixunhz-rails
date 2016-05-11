@@ -5,29 +5,44 @@
       <div class="username">
         <%= event.user.username %>
       </div>
-      <div class="time-ago">
-        <%= time_ago_in_words event.created_at %>
-      </div>
     </div>
     <div class="image center-block">
       <%= link_to (image_tag event.image.url(:medium), class:'img-responsive'), event_path(event) %>
     </div>
     <div class="event-bottom">
       <div class="name">
-        <div class="name-content">
-          <div class="username">
-            <%= event.user.username %>
-          </div>
-          <%= event.name %>
+        <div class="username">
+          <%= event.user.username %>
         </div>
-        <div class="comments" id="comments_<%= event.id %>"></div>
+        <%= event.name %>
       </div>
+      <% if event.comments %>
+        <% event.comments.each do |comment| %>
+          <div class="comment">
+            <div class="username">
+              <%= comment.user.username %>
+            </div>
+            <div class="comment-content">
+              <%= comment.content %>
+            </div>
+            <% if comment.user == current_user %>
+              <%= link_to event_comment_path(event, comment), method: :delete, data: { confirm: "Are you sure?" } do %>
+                <span class="glyphicon glyphicon-remove delete-comment"></span>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
     <div class="comment-like-form row">
       <div class="like-button col-sm-1">
         <span class="glyphicon glyphicon-heart-empty"></span>
       </div>
-      <div class="comment-form col-sm-11"></div>
+      <div class="comment-form col-sm-11">
+        <%= form_for [event, event.comments.new] do |f| %>
+          <%= f.text_field :content, placeholder: 'Add a comment...' %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

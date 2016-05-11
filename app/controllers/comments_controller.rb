@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
 	def create
 		@comment = @event.comments.build(comment_params)
-		@comment.user_id = current_user.user_id
+		@comment.user_id = current_user.id
 
 		if @comment.save
 			flash[:success] = "Comment successfully added!"
