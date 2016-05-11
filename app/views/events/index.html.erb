@@ -1,17 +1,5 @@
 <div class="events-wrapper row">
   <% @events.each do |event| %>
-    <div class="event">
-      <div class="event-head">
-        <div class="name">
-          Albert Chen
-        </div>
-      </div>
-      <div class="image center-block">
-        <%= link_to (image_tag event.image.url(:medium), class: 'img-responsive'), event_path(event) %>
-      </div>
-      <p class="name">
-        <%= event.name %>
-      </p>
-    </div>
+    <%= render 'event', event: event %>
   <% end %>
 </div>

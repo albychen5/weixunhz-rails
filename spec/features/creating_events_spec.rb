@@ -1,7 +1,12 @@
-require 'rails_helper.rb'
+require 'rails_helper'
 
 feature 'creating posts' do
-	scenario 'can create a job' do
+	background do
+		user = create :user
+		
+		sign_in_with user
+	end
+	scenario 'can create a new event' do
 		visit '/'
 		click_link 'Create Event'
 		attach_file('Image', "spec/files/images/test.jpg")
@@ -10,6 +15,7 @@ feature 'creating posts' do
 		expect(page).to have_content('#testimage')
 		expect(page).to have_content('Event created!')
 		expect(page).to have_css("img[src*='test.jpg']")
+		expect(page).to have_content('testrailsdev')
 	end
 
 	it 'needs image' do

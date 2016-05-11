@@ -1,26 +1,28 @@
 class EventsController < ApplicationController
+	before_action :authenticate_user!, except: [:index, :show]
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
+	before_action :event_owner_verification, only: [:edit, :update, :destroy]
 
 	def index
 		@events = Event.all
 	end
 
-	def show
-	end
-
 	def new
-		@event = Event.new
+		@event = current_user.events.build
 	end
 
 	def create
-		@event = Event.create(event_params)
+		@event = current_user.events.build(event_params)
 		if @event.save
 			flash[:success] = "Event created!"
-			redirect_to @event
+			redirect_to events_path
 		else
 			flash.now[:alert] = "Event could not be created."
 			render :new
 		end
+	end
+
+	def show
 	end
 
 	def edit
@@ -29,7 +31,7 @@ class EventsController < ApplicationController
 	def update
 		if @event.update(event_params)
 			flash[:success] = "Event updated!"
-			redirect_to @event
+			redirect_to events_path
 		else
 			flash.now[:alert] = "Event could not be updated."
 			render :edit
@@ -37,20 +39,25 @@ class EventsController < ApplicationController
 	end
 
 	def destroy
-		if @event.destroy
-			flash[:success] = "Event deleted!"
-			redirect_to root_path
-		else
-			flash.now[:alert] = "Event could not be deleted"
-		end
+		@event.destroy
+		flash[:success] = "Event deleted!"
+		redirect_to root_path
 	end
 
 	private
+	
+	def event_params
+		params.require(:event).permit(:image, :name)
+	end
+
 	def set_event
 		@event = Event.find(params[:id])
 	end
 
-	def event_params
-		params.require(:event).permit(:image, :name)
+	def event_owner_verification
+		unless current_user.id == @event.user.id
+			flash[:alert] = "Not allowed to edit event"
+			redirect_to root_path
+		end
 	end
 end

@@ -1,11 +1,15 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Can view individual posts' do
-	scenario 'click to view post' do
-		event = create(:event)
+	background do
+		user = create :user
+		event = create(:event, name: "test view post", user_id: user.id)
 
-		visit '/'
+		sign_in_with user
+	end
+
+	scenario 'click to view post' do
 		find(:xpath, "//a[contains(@href,'events/1')]").click
-    expect(page.current_path).to eq(event_path(event))
+    expect(page.current_path).to eq(event_path(1))
 	end
 end

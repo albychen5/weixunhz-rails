@@ -2,9 +2,11 @@ require 'rails_helper'
 
 feature 'deleting events' do
 	background do
-		job = create(:event, name: "test delete post")
+		user = create :user
+		event = create(:event, name: "test delete post", user_id: user.id)
 
-		visit '/'
+		sign_in_with user
+
 		find(:xpath, "//a[contains(@href, 'events/1')]").click
 		click_link 'Edit event'
 	end
