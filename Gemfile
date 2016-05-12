@@ -30,6 +30,8 @@ gem 'simple_form' #Simple Form for forms ...
 gem 'capybara' #test framework
 gem 'factory_girl_rails' #factory creation gem
 gem 'devise' #authentication gem
+gem 'kaminari' #pagination gem
+gem 'jquery-turbolinks' #turbolinks gem
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

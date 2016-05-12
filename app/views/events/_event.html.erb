@@ -21,8 +21,13 @@
           <%= event.name %>
         </div>
         <div class="comments" id="comments_<%= event.id %>">
-          <% if event.comments %>
-            <%= render event.comments, event: event %>
+          <% if event.comments.any? %>
+          <div class="paginator" id="#comments-paginator-<%= event.id %>">
+            <% unless event.comments.count <= 4 %>
+            <%= link_to "view all #{event.comments.count} comments", event_comments_path(event), remote: true, class: 'more-comments', data: {event_id: "#{event.id}", type: "html"} %>
+            <% end %>
+          </div>
+          <%= render event.comments.last(4), event: event %>
           <% end %>
         </div>
       </div>
@@ -33,7 +38,7 @@
       </div>
       <div class="comment-form col-xs-11">
         <%= form_for([event, event.comments.build], remote: true) do |f| %>
-          <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{event.id}" %>
+        <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{event.id}" %>
         <% end %>
       </div>
     </div>

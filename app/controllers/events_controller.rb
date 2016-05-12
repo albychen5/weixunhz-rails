@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 	before_action :event_owner_verification, only: [:edit, :update, :destroy]
 
 	def index
-		@events = Event.all
+		@events = Event.all.order('created_at DESC').page params[:page]
 	end
 
 	def new

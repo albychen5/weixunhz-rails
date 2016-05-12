@@ -1,5 +1,10 @@
 <div class="events-wrapper row">
-  <% @events.each do |event| %>
-    <%= render 'event', event: event %>
-  <% end %>
+	<div id="events">
+	  <% @events.each do |event| %>
+	    <%= render 'event', event: event %>
+	  <% end %>
+  </div>
+</div>
+<div class="text-center" id="paginator">
+	<%= link_to_next_page @events, 'More Events', remote: true, id: 'load_more' %>
 </div>
