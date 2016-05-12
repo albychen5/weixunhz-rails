@@ -10,7 +10,7 @@ feature 'Creating new user' do
 		fill_in 'Username', with: "testrailsdev"
 		fill_in 'Email', with: "testrailsdev@weixunhz.com"
 		fill_in 'Password', with: "password", match: :first
-		fill_in 'Password confirmation', with: "password"
+		fill_in 'Confirm Password', with: "password"
 
 		click_button 'Sign up'
 		expect(page).to have_content("Welcome! You have signed up")
@@ -19,7 +19,7 @@ feature 'Creating new user' do
 	scenario 'requires username to successfully create an account' do
 		fill_in 'Email', with: "testrailsdev@weixunhz.com"
 		fill_in 'Password', with: "password", match: :first
-		fill_in 'Password confirmation', with: "password"
+		fill_in 'Confirm Password', with: "password"
 
 		click_button 'Sign up'
 		expect(page).to have_content("can't be blank")
@@ -29,7 +29,7 @@ feature 'Creating new user' do
 		fill_in 'Username', with: "a"
 		fill_in 'Email', with: "testrailsdev@weixunhz.com"
 		fill_in 'Password', with: "password", match: :first
-		fill_in 'Password confirmation', with: "password"
+		fill_in 'Confirm Password', with: "password"
 
 		click_button 'Sign up'
 		expect(page).to have_content("minimum is 3 characters")
@@ -39,7 +39,7 @@ feature 'Creating new user' do
 		fill_in 'Username', with: "a" * 17
 		fill_in 'Email', with: "testrailsdev@weixunhz.com"
 		fill_in 'Password', with: "password", match: :first
-		fill_in 'Password confirmation', with: "password"
+		fill_in 'Confirm Password', with: "password"
 
 		click_button 'Sign up'
 		expect(page).to have_content("maximum is 16 characters")

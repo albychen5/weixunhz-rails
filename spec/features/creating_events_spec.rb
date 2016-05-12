@@ -9,8 +9,8 @@ feature 'creating posts' do
 	scenario 'can create a new event' do
 		visit '/'
 		click_link 'Create Event'
-		attach_file('Image', "spec/files/images/test.jpg")
-		fill_in 'Name', with: 'using test #testimage'
+		attach_file('No file chosen', "spec/files/images/test.jpg")
+		fill_in 'Add your event name', with: 'using test #testimage'
 		click_button 'Create Event'
 		expect(page).to have_content('#testimage')
 		expect(page).to have_content('Event created!')
@@ -21,7 +21,7 @@ feature 'creating posts' do
 	it 'needs image' do
 		visit '/'
 		click_link 'Create Event'
-		fill_in 'Name', with: 'using test without image'
+		fill_in 'Add your event name', with: 'using test without image'
 		click_button 'Create Event'
 		expect(page).to have_content('Event could not be created.')
 	end

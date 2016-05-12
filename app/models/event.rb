@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
 	validates :image, presence: true
-	validates :name, presence: true
+	validates :name, presence: true, length: { maximum: 300 }
 	validates :user_id, presence: true
 	belongs_to :user
 	has_many :comments, dependent: :destroy

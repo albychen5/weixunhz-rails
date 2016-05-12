@@ -10,8 +10,8 @@ feature 'commenting on events' do
 	end
 
 	scenario 'create a comment' do
-		fill_in 'Add a comment...', with: 'this is my test comment\n'
+		fill_in 'Add a comment...', with: 'this is my test comment'
 		# click_button 'Submit'
-		expect(page).to have_content('this is my test comment')
+		expect(page).to have_css("div.comments#{event.id}", text: 'this is my test comment')
 	end
 end

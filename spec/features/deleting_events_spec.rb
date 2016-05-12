@@ -12,7 +12,7 @@ feature 'deleting events' do
 	end
 	
 	scenario 'can delete single event' do
-		click_link 'Delete event'
+		click_link 'Delete Event'
 
 		expect(page).to_not have_content("test delete post")
 		expect(page).to have_content("Event deleted!")
