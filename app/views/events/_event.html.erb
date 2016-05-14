@@ -37,7 +37,7 @@
       <div class="like-button col-xs-1">
         <%= link_to '', like_event_path(event.id), remote: true,
                         id: "like_#{event.id}",
-                        class: "glyphicon glyphicon-heart-empty" %>
+                        class: "glyphicon #{liked_event event}" %>
       </div>
       <div class="comment-form col-xs-11">
         <%= form_for([event, event.comments.build], remote: true) do |f| %>

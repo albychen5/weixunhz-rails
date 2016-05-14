@@ -15,7 +15,7 @@ class EventsController < ApplicationController
 		@event = current_user.events.build(event_params)
 		if @event.save
 			flash[:success] = "Event created!"
-			redirect_to events_path
+			redirect_to root_path
 		else
 			flash.now[:alert] = "Event could not be created."
 			render :new
@@ -46,6 +46,15 @@ class EventsController < ApplicationController
 
 	def like
 		if @event.liked_by current_user
+			respond_to do |format|
+				format.html { redirect_to :back }
+				format.js
+			end
+		end
+	end
+
+	def unlike
+		if @event.unliked_by current_user
 			respond_to do |format|
 				format.html { redirect_to :back }
 				format.js
