@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+  get ':username', to: 'profiles#show', as: :profile
+  get ':username/edit', to: 'profiles#edit', as: :edit_profile
+  patch ':username/edit', to: 'profiles#update', as: :update_profile
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -17,6 +20,9 @@ Rails.application.routes.draw do
   #   resources :products
   resources :events do
     resources :comments
+      member do
+        get 'like'
+      end
   end
 
   # Example resource route with options:

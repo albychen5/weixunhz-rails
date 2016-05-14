@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
-	before_action :set_event, only: [:show, :edit, :update, :destroy]
+	before_action :set_event, only: [:show, :edit, :update, :destroy, :like]
 	before_action :event_owner_verification, only: [:edit, :update, :destroy]
 
 	def index
@@ -42,6 +42,15 @@ class EventsController < ApplicationController
 		@event.destroy
 		flash[:success] = "Event deleted!"
 		redirect_to root_path
+	end
+
+	def like
+		if @event.liked_by current_user
+			respond_to do |format|
+				format.html { redirect_to :back }
+				format.js
+			end
+		end
 	end
 
 	private

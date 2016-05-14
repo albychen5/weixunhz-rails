@@ -32,6 +32,7 @@ gem 'factory_girl_rails' #factory creation gem
 gem 'devise' #authentication gem
 gem 'kaminari' #pagination gem
 gem 'jquery-turbolinks' #turbolinks gem
+gem 'acts_as_votable', '~> 0.10.0' #voting gem
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -45,7 +46,7 @@ gem 'jquery-turbolinks' #turbolinks gem
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'rspec-rails', '~>3.0'
+  gem 'rspec-rails', '~> 3.0'
 end
 
 group :development do
