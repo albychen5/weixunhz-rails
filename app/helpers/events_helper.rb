@@ -5,11 +5,6 @@ module EventsHelper
 		count_likers(votes)
 	end
 
-	def liked_event(event)  
-    return 'glyphicon-heart' if current_user.voted_for? event
-    'glyphicon-heart-empty'
-  end
-
 	private
 
 	def list_likers(votes)

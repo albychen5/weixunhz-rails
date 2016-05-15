@@ -33,23 +33,25 @@
         </div>
       </div>
     </div>
-    <div class="comment-like-form row">
-      <div class="like-button col-xs-1">
-      <% if current_user.liked? event %>
-        <%= link_to '', unlike_event_path(event.id), remote: true,
-                        id: "like_#{event.id}",
-                        class: "glyphicon glyphicon-heart" %>
-      <% else %>
-        <%= link_to '', like_event_path(event.id), remote: true,
-                        id: "like_#{event.id}",
-                        class: "glyphicon glyphicon-heart-empty" %>
-      <% end %>
-      </div>
-      <div class="comment-form col-xs-11">
-        <%= form_for([event, event.comments.build], remote: true) do |f| %>
-        <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{event.id}" %>
+    <% if user_signed_in? %>
+      <div class="comment-like-form row">
+        <div class="like-button col-xs-1">
+        <% if current_user.liked? event %>
+          <%= link_to '', unlike_event_path(event.id), remote: true,
+                          id: "like_#{event.id}",
+                          class: "glyphicon glyphicon-heart" %>
+        <% else %>
+          <%= link_to '', like_event_path(event.id), remote: true,
+                          id: "like_#{event.id}",
+                          class: "glyphicon glyphicon-heart-empty" %>
         <% end %>
+        </div>
+        <div class="comment-form col-xs-11">
+          <%= form_for([event, event.comments.build], remote: true) do |f| %>
+          <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{event.id}" %>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
