@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
-	before_action :set_event, only: [:show, :edit, :update, :destroy, :like]
+	before_action :set_event, only: [:show, :edit, :update, :destroy, :like, :unlike]
 	before_action :event_owner_verification, only: [:edit, :update, :destroy]
 
 	def index
@@ -45,20 +45,18 @@ class EventsController < ApplicationController
 	end
 
 	def like
-		if @event.liked_by current_user
-			respond_to do |format|
-				format.html { redirect_to :back }
-				format.js
-			end
+		@event.liked_by current_user
+		respond_to do |format|
+			format.html { redirect_to :back }
+			format.js
 		end
 	end
 
 	def unlike
-		if @event.unliked_by current_user
-			respond_to do |format|
-				format.html { redirect_to :back }
-				format.js
-			end
+		@event.unliked_by current_user
+		respond_to do |format|
+			format.html { redirect_to :back }
+			format.js
 		end
 	end
 
