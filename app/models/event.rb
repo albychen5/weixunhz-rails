@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
 
 	belongs_to :user
 	has_many :comments, dependent: :destroy
+	has_many :notifications, dependent: :destroy
 
 	validates :image, presence: true
 	validates :name, presence: true, length: { maximum: 300 }

@@ -39,11 +39,11 @@
         <% if current_user.liked? event %>
           <%= link_to '', unlike_event_path(event.id), remote: true,
                           id: "like_#{event.id}",
-                          class: "glyphicon glyphicon-heart" %>
+                          class: "like glyphicon glyphicon-heart" %>
         <% else %>
           <%= link_to '', like_event_path(event.id), remote: true,
                           id: "like_#{event.id}",
-                          class: "glyphicon glyphicon-heart-empty" %>
+                          class: "like glyphicon glyphicon-heart-empty" %>
         <% end %>
         </div>
         <div class="comment-form col-xs-11">
