@@ -17,9 +17,13 @@
       <div class="name">
         <div class="name-content">
           <div class="username">
-            <%= link_to event.user.username, profile_path(event.user.username) %>
+            Organizer: <%= link_to event.user.username, profile_path(event.user.username) %><br>
           </div>
-          <%= event.name %>
+          Event Name: <%= event.name %><br>
+          Location: <%= info_not_specified(event, event.location) %><br>
+          Date: <%= info_not_specified(event, event.date) %><br>
+          Time: <%= info_not_specified(event, event.event_time) %><br>
+          Details: <%= info_not_specified(event, event.details) %><br>
         </div>
         <div class="comments" id="comments_<%= event.id %>">
           <% if event.comments.any? %>
@@ -48,7 +52,7 @@
         </div>
         <div class="comment-form col-xs-11">
           <%= form_for([event, event.comments.build], remote: true) do |f| %>
-          <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{event.id}" %>
+            <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{event.id}" %>
           <% end %>
         </div>
       </div>

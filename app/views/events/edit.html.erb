@@ -2,5 +2,5 @@
 <div class="text-center edit-links">
   <%= link_to "Delete Event", event_path(@event), method: :delete, data: { confirm: "Are you sure you want to delete this event?" } %>
   |
-  <%= link_to "cancel", events_path %>
+  <%= link_to "cancel", event_path(@event) %>
 </div>

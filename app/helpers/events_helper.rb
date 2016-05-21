@@ -5,6 +5,14 @@ module EventsHelper
 		count_likers(votes)
 	end
 
+	def info_not_specified(event, property)
+		if property == nil
+			return 'TBD'
+		else
+			return property
+		end
+	end
+
 	private
 
 	def list_likers(votes)

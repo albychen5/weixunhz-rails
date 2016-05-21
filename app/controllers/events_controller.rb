@@ -4,7 +4,11 @@ class EventsController < ApplicationController
 	before_action :event_owner_verification, only: [:edit, :update, :destroy]
 
 	def index
-		@events = Event.all.order('created_at DESC').page params[:page]
+		if user_signed_in?
+			@events = current_user.events_feed.order('created_at DESC').page params[:page]
+		else
+			@events = Event.all.order('created_at DESC').page params[:page]
+		end
 	end
 
 	def new
@@ -31,7 +35,7 @@ class EventsController < ApplicationController
 	def update
 		if @event.update(event_params)
 			flash[:success] = "Event updated!"
-			redirect_to events_path
+			redirect_to event_path(@event)
 		else
 			flash.now[:alert] = "Event could not be updated."
 			render :edit
@@ -46,6 +50,7 @@ class EventsController < ApplicationController
 
 	def like
 		@event.liked_by current_user
+		create_notification @event
 		respond_to do |format|
 			format.html { redirect_to :back }
 			format.js
@@ -54,16 +59,29 @@ class EventsController < ApplicationController
 
 	def unlike
 		@event.unliked_by current_user
+		create_notification @event
 		respond_to do |format|
 			format.html { redirect_to :back }
 			format.js
 		end
 	end
 
+	def browse
+		@events = Event.all.order('created_at DESC').page params[:page]
+	end
+
 	private
+	def create_notification(event)
+		return if event.user.id == current_user.id
+		Notification.create(user_id: event.user.id,
+												notified_by_id: current_user.id,
+												event_id: event.id,
+												identifier: event.id,
+												notice_type: 'like')
+	end
 	
 	def event_params
-		params.require(:event).permit(:image, :name)
+		params.require(:event).permit(:image, :name, :location, :date, :event_time, :details)
 	end
 
 	def set_event

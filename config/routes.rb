@@ -1,11 +1,23 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { registrations: 'registrations' }
+  
+  post ':username/follow_user', to: 'relationships#follow_user', as: :follow_user
+  post ':username/unfollow_user', to: 'relationships#unfollow_user', as: :unfollow_user
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through
+  get 'notifications', to: 'notifications#index'
+
+  get 'browse', to: 'events#browse', as: :browse_events
+
+  get 'profiles/show'
+
   root 'events#index'
+
+  devise_for :users, :controllers => { registrations: 'registrations' }
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

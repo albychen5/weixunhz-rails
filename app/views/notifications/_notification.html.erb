@@ -1,1 +1,1 @@
-<%= link_to "#{notification.notified_by.username} has #{notification.notice_type}ed on your event", event_path(notification.event) %>
+<%= link_to "#{notification.notified_by.username} has #{notification.notice_type}ed on your event #{time_ago_in_words notification.created_at} ago", link_through_path(notification) %><br>
