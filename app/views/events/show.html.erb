@@ -1,9 +1,11 @@
 <%= render 'event', event: @event %>
 <div class="text-center edit-links">
   <%= link_to "Cancel", events_path %>
-  <% if user_signed_in? && @event.user.id == current_user.id %>
+  <%#if user_signed_in? && @event.user.id == current_user.id %>
   |
   <%= link_to "Edit event", edit_event_path(@event) %>
-  <% else %>
-  <% end %>
+  <%# else %>
+  <%# end %>
+  |
+  <%= link_to "Participants", attendees_event_path(@event) %>
 </div>

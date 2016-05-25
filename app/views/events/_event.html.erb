@@ -3,7 +3,7 @@
     <div class="event-head">
       <div class="thumb-img"></div>
       <div class="username">
-        <%= link_to event.user.username, profile_path(event.user.username) %>
+        <%#= link_to event.user.username, profile_path(event.user.username) %>
       </div>
       <div class="time-ago">
         <%= time_ago_in_words event.created_at %>
@@ -17,7 +17,7 @@
       <div class="name">
         <div class="name-content">
           <div class="username">
-            Organizer: <%= link_to event.user.username, profile_path(event.user.username) %><br>
+            Organizer: <%#= link_to event.user.username, profile_path(event.user.username) %><br>
           </div>
           Event Name: <%= event.name %><br>
           Location: <%= info_not_specified(event, event.location) %><br>
@@ -55,6 +55,13 @@
             <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{event.id}" %>
           <% end %>
         </div>
+      </div>
+      <div class="text-center"> <!-- ==== TODO GET ATTEND LINK WORKING === -->
+        <% if current_user_is_attending(current_user.id, event.id) %>
+          <%= link_to "Attending", unattend_event_path(event), remote: true, class: 'btn unfollow-button', id: "unattend_#{event.id}", method: :post %>
+        <% else %>
+          <%= link_to "Not Attending", attend_event_path(event), remote: true, class: 'btn follow-button', id: "attend_#{event.id}", method: :post %>
+        <% end %>
       </div>
     <% end %>
   </div>

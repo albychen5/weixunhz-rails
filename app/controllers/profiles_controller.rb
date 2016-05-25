@@ -21,6 +21,12 @@ class ProfilesController < ApplicationController
 		end
 	end
 
+	def followers
+	end
+
+	def following
+	end
+
 private
 	def profile_params
 		params.require(:user).permit(:avatar, :bio)

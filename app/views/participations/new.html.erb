@@ -1,0 +1,11 @@
+<%= form_for @participation, url: {action: "create"} do |f| %>
+
+  <%= f.fields_for :user, current_user do |builder| %>
+    <fieldset>
+      <%= builder.label :username, "First Name" %><br />
+      <%= builder.text_field :username %><br />
+    </fieldset>
+  <% end %>
+
+  <%= f.submit "Register" %>
+<% end %>

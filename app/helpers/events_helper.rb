@@ -13,6 +13,11 @@ module EventsHelper
 		end
 	end
 
+	def current_user_is_attending(current_user_id, current_event_id)
+		attending = Participation.find_by(event_id: current_event_id, user_id: current_user_id )
+		return true if attending
+	end
+
 	private
 
 	def list_likers(votes)

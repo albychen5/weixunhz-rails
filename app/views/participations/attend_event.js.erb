@@ -1,0 +1,4 @@
+$('#attend_<%= @event.id %>').attr('class', 'btn unfollow-button')
+									.text('Attending')
+									.attr('href', '/events/<%=@event.id%>/unattend')
+									.attr('id', "unattend_<%= @event.id %>");

@@ -1,0 +1,11 @@
+<div class="text-center">
+	<h2>Attendees for <%= @event.name %><br></h1>
+	<% @participations.each do |p| %>
+		<% if @event == p.event %>
+			<%= p.user.username %><br>
+		<% else %>
+		<% end %>
+	<% end %>
+</div>
+
+<!-- Should move all logic into the controller index action -->

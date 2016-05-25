@@ -1,13 +1,9 @@
 Rails.application.routes.draw do
-  
-  post ':username/follow_user', to: 'relationships#follow_user', as: :follow_user
-  post ':username/unfollow_user', to: 'relationships#unfollow_user', as: :unfollow_user
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'events#index'
   get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through
   get 'notifications', to: 'notifications#index'
 
@@ -15,7 +11,7 @@ Rails.application.routes.draw do
 
   get 'profiles/show'
 
-  root 'events#index'
+  
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
@@ -24,19 +20,27 @@ Rails.application.routes.draw do
   get ':username', to: 'profiles#show', as: :profile
   get ':username/edit', to: 'profiles#edit', as: :edit_profile
   patch ':username/edit', to: 'profiles#update', as: :update_profile
+  post ':username/follow_user', to: 'relationships#follow_user', as: :follow_user
+  post ':username/unfollow_user', to: 'relationships#unfollow_user', as: :unfollow_user
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  post 'events/:event_id/attend', to: 'participations#attend_event', as: :attend_event
+  post 'events/:event_id/unattend', to: 'participations#unattend_event', as: :unattend_event
+  get 'events/:event_id/attendees', to: 'participations#index', as: :attendees_event
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :events do
+    # resources :participations
     resources :comments
-    member do
-      get 'like'
-      get 'unlike'
+      member do
+        get 'like'
+        get 'unlike'
     end
   end
+
+  resources :users
 
   # Example resource route with options:
   #   resources :products do
