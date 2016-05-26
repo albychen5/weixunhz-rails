@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
 	before_action :owned_profile!, only: [:edit, :update]
 
 	def show
-		@events = @user.events.order('created_at DESC')
+		@events = Event.where(user_id = @user.id).order('created_at DESC')
 	end
 
 	def edit

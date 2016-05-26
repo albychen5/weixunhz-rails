@@ -36,11 +36,11 @@ class User < ActiveRecord::Base
     following_relationships.find_by(following_id: user_id).destroy
   end
 
-  def attend(event_id)
-    participations.create(event_id: event_id)
-  end
+  # def attend(event_id)
+  #   participations.create(event_id: event_id)
+  # end
 
-  def unattend(event_id)
-    participations.find_by(event_id: event_id).destroy
-  end
+  # def unattend(event_id)
+  #   participations.find_by(event_id: event_id).destroy
+  # end
 end

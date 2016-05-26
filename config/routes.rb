@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   post 'events/:event_id/attend', to: 'participations#attend_event', as: :attend_event
   post 'events/:event_id/unattend', to: 'participations#unattend_event', as: :unattend_event
   get 'events/:event_id/attendees', to: 'participations#index', as: :attendees_event
-  get 'events/:event_id/register', to: 'participations#new', as: :event_registration
+  get 'events/:event_id/new_registration', to: 'participations#new', as: :new_registration
   post 'events/:event_id/create_registration', to: 'participations#create', as: :create_registration
 
   # Example resource route (maps HTTP verbs to controller actions automatically):

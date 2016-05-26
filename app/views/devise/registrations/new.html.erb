@@ -11,6 +11,8 @@
             <div class="panel-body">
               <%= f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email', input_html: { class: 'input-lg' } %>
               <%= f.input :username, required: true, label: false, placeholder: 'Username', input_html: { class: 'input-lg' } %>
+              <!-- Add in phone number once rspec tests are written -->
+              <%#= f.input :phone_number, required: true, label: false, placeholder: 'Phone Number', input_html: { class: 'input-lg' } %>
               <%= f.input :password, required: true, label: false, placeholder: 'Password', input_html: { class: 'input-lg' } %>
               <%= f.input :password_confirmation, required: true, label: false, placeholder: 'Confirm Password', input_html: { class: 'input-lg' } %>
               <%= f.button :submit, "Sign up", class: 'btn-lg btn-info btn-block' %>
