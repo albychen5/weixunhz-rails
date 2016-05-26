@@ -2,7 +2,7 @@
 	<h2>Attendees for <%= @event.name %><br></h1>
 	<% @participations.each do |p| %>
 		<% if @event == p.event %>
-			<%= p.user.username %><br>
+			<%= p.user.username %> | <%= p.attendee_name %> | <%= p.attendee_email %><br>
 		<% else %>
 		<% end %>
 	<% end %>

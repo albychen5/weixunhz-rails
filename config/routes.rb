@@ -11,8 +11,6 @@ Rails.application.routes.draw do
 
   get 'profiles/show'
 
-  
-
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   # Example of regular route:
@@ -28,6 +26,8 @@ Rails.application.routes.draw do
   post 'events/:event_id/attend', to: 'participations#attend_event', as: :attend_event
   post 'events/:event_id/unattend', to: 'participations#unattend_event', as: :unattend_event
   get 'events/:event_id/attendees', to: 'participations#index', as: :attendees_event
+  get 'events/:event_id/register', to: 'participations#new', as: :event_registration
+  post 'events/:event_id/create_registration', to: 'participations#create', as: :create_registration
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

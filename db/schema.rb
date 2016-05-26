@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522143532) do
+ActiveRecord::Schema.define(version: 20160525114132) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -70,9 +70,10 @@ ActiveRecord::Schema.define(version: 20160522143532) do
   create_table "participations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_id"
-    t.datetime "event_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "attendee_name"
+    t.string   "attendee_email"
   end
 
   add_index "participations", ["event_id"], name: "index_participations_on_event_id"

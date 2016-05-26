@@ -1,8 +1,17 @@
 class ParticipationsController < ApplicationController
 	before_action :set_event
-
 	def index
 		@participations = Participation.all
+	end
+
+	def new
+		@user = current_user
+		@participation = Participation.new
+	end
+
+	def create
+		Participation.create(participation_params)
+		redirect_to event_path(@event)
 	end
 
 	def attend_event
@@ -25,7 +34,7 @@ class ParticipationsController < ApplicationController
 
 	private
 	def participation_params
-		params.require(:participation).permit(:id, :user_attributes => [:id, :username])
+		params.require(:participation).permit(:id, :user_id, :event_id, :attendee_name, :attendee_email)
 	end
 
 	def set_event

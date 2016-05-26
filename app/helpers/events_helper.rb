@@ -18,6 +18,10 @@ module EventsHelper
 		return true if attending
 	end
 
+	def returns_event_owner(event_user_id) #function to find the owner for an event
+		return User.find_by(id: event_user_id)
+	end
+
 	private
 
 	def list_likers(votes)

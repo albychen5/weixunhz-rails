@@ -17,7 +17,7 @@
       <div class="name">
         <div class="name-content">
           <div class="username">
-            Organizer: <%#= link_to event.user.username, profile_path(event.user.username) %><br>
+            Organizer: <%= link_to returns_event_owner(event.user_id).username, profile_path(returns_event_owner(event.user_id).username) %><br>
           </div>
           Event Name: <%= event.name %><br>
           Location: <%= info_not_specified(event, event.location) %><br>

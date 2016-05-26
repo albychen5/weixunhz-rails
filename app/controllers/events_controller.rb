@@ -27,6 +27,7 @@ class EventsController < ApplicationController
 	end
 
 	def show
+		@owner = User.find_by(id: @event.user_id)
 	end
 
 	def edit
@@ -81,7 +82,7 @@ class EventsController < ApplicationController
 	end
 	
 	def event_params
-		params.require(:event).permit(:image, :name, :location, :date, :event_time, :details)
+		params.require(:event).permit(:user_id, :image, :name, :location, :date, :event_time, :details)
 	end
 
 	def set_event
