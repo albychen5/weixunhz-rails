@@ -1,5 +1,7 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
+@import "materialize";
+@import "materialize/components/color";
+@import "font-awesome";
+$primary-color: color("blue", "lighten-2") !default;
 
 html {  
   height: 100%;
@@ -19,24 +21,6 @@ body {
 
 .navbar {
   margin-bottom: 0px;
-}
-
-.navbar-brand {
-  a {
-    color: #125688;
-  }
-}
-
-.navbar-default {
-  background-color: #fff;
-  .navbar-nav li a {
-    color: #125688;
-  }
-}
-
-.navbar-container {
-  max-width: 640px;
-  margin: 0 auto;
 }
 
 /* ## event CUSTOMISATIONS ## */

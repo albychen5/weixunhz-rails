@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>微醺酒绘 (杭州)</title>
+    <title>LYVE 微醺</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
@@ -15,6 +15,17 @@
         <%= content_tag :div, msg, class: [:alert, alert_for(name)] %>
       <% end %>
       <%= yield %>
+
+      <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large red">
+          <i class="material-icons"><%= fa_icon "bars" %></i>
+        </a>
+        <ul>
+          <li><%= link_to (fa_icon "plus"), new_event_path, class: "btn-floating yellow darken-1" %></li>
+          <li><%= link_to (fa_icon "search"), browse_events_path, class: "btn-floating green" %></li>
+          <li><%= link_to (fa_icon "home"), root_path, class: "btn-floating blue" %></li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>

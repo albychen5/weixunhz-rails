@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526090907) do
+ActiveRecord::Schema.define(version: 20160606124651) do
+
+  create_table "attendees", force: :cascade do |t|
+    t.string   "name"
+    t.string   "phone_number"
+    t.integer  "event_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "attendees", ["event_id"], name: "index_attendees_on_event_id"
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -67,17 +77,15 @@ ActiveRecord::Schema.define(version: 20160526090907) do
   add_index "notifications", ["notified_by_id"], name: "index_notifications_on_notified_by_id"
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id"
 
-  create_table "participations", force: :cascade do |t|
+  create_table "proposals", force: :cascade do |t|
+    t.string   "name"
+    t.text     "info"
     t.integer  "user_id"
-    t.integer  "event_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.string   "attendee_name"
-    t.string   "attendee_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "participations", ["event_id"], name: "index_participations_on_event_id"
-  add_index "participations", ["user_id"], name: "index_participations_on_user_id"
+  add_index "proposals", ["user_id"], name: "index_proposals_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

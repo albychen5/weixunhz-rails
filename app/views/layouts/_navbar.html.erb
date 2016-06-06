@@ -1,21 +1,13 @@
-<nav class="navbar navbar-default">
-  <div class="navbar-container">
-    <div class="navbar-header">
-      <button class="navbar-toggle collapsed" data-target="#bs-navbar-collapse-1" data-toggle="collapse" type="button">
-        <span class="sr-only">Toggle Navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <div class="navbar-brand">
-        <%= link_to "微醺酒绘 (杭州)", root_path %>
+<div class="navbar">
+  <nav class="pink darken-3" role="navigation">
+    <div class="nav-wrapper container">
+      <div class="brand-logo">
+        <%= link_to "LYVE微醺", root_path %>
       </div>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
         <% if user_signed_in? %>
         <li>
-          <%= render 'notifications/notification_dropdown' %>
+          <%#= render 'notifications/notification_dropdown' %>
         </li>
         <li>
           <%= link_to "Explore", browse_events_path %>
@@ -36,5 +28,5 @@
         <% end %>
       </ul>
     </div>
-  </div>
-</nav>
+  </nav>
+</div>

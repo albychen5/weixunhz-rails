@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # User Installed Gems
-gem 'bootstrap-sass', '~> 3.3.6' #Bootstrap Install
+# gem 'bootstrap-sass', '~> 3.3.6' #Bootstrap Install
 gem "paperclip", "~> 5.0.0.beta1" #Paperclip gem for image attachments
 gem 'simple_form' #Simple Form for forms ...
 gem 'capybara' #test framework
@@ -33,6 +33,8 @@ gem 'devise' #authentication gem
 gem 'kaminari' #pagination gem
 gem 'jquery-turbolinks' #turbolinks gem
 gem 'acts_as_votable', '~> 0.10.0' #voting gem
+gem 'materialize-sass'
+gem "font-awesome-rails"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

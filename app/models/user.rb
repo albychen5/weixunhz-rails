@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
 	acts_as_voter #voting gem
 
-  has_many :participations
-  has_many :events, through: :participations
+  has_many :proposals
+  has_many :events
+  has_many :attendees, through: :events
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
@@ -35,12 +36,4 @@ class User < ActiveRecord::Base
   def unfollow(user_id)
     following_relationships.find_by(following_id: user_id).destroy
   end
-
-  # def attend(event_id)
-  #   participations.create(event_id: event_id)
-  # end
-
-  # def unattend(event_id)
-  #   participations.find_by(event_id: event_id).destroy
-  # end
 end

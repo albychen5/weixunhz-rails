@@ -5,23 +5,6 @@ module EventsHelper
 		count_likers(votes)
 	end
 
-	def info_not_specified(event, property)
-		if property == nil
-			return 'TBD'
-		else
-			return property
-		end
-	end
-
-	def current_user_is_attending(current_user_id, current_event_id)
-		attending = Participation.find_by(event_id: current_event_id, user_id: current_user_id )
-		return true if attending
-	end
-
-	def returns_event_owner(event_user_id) #function to find the owner for an event
-		return User.find_by(id: event_user_id)
-	end
-
 	private
 
 	def list_likers(votes)

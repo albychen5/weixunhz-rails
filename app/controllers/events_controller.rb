@@ -90,7 +90,7 @@ class EventsController < ApplicationController
 	end
 
 	def event_owner_verification
-		unless current_user.id == @event.user.id
+		unless current_user.id == @event.user_id
 			flash[:alert] = "Not allowed to edit event"
 			redirect_to root_path
 		end
