@@ -1,5 +1,5 @@
 class ProposalsController < ApplicationController
-  before_action :set_proposal, only: [:show, :edit, :update, :destroy]
+  before_action :set_proposal, only: [:show, :edit, :update, :destroy, :like, :unlike]
 
   # GET /proposals
   # GET /proposals.json
@@ -60,6 +60,16 @@ class ProposalsController < ApplicationController
       format.html { redirect_to proposals_url, notice: 'Proposal was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def like
+    @proposal.liked_by current_user
+    redirect_to :back
+  end
+
+  def unlike
+    @proposal.unliked_by current_user
+    redirect_to :back
   end
 
   private
