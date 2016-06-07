@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Attendees</h1>
+<h1>People Attending</h1>
 
 <table>
   <thead>
@@ -18,11 +18,10 @@
       <tr>
         <td><%= attendee.name %></td>
         <td><%= attendee.phone_number %></td>
-        <td><%= attendee.event %></td>
-        <td><%= attendee.event.user %></td>
-        <td><%= link_to 'Show', attendee %></td>
-        <td><%= link_to 'Edit', edit_attendee_path(attendee) %></td>
-        <td><%= link_to 'Destroy', attendee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= attendee.event.name %></td>
+        <td><%= attendee.event.user.username %></td>
+        <td><%= link_to 'Edit', edit_event_attendee_path(@event, attendee) %></td>
+        <td><%#= link_to 'Destroy', attendee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

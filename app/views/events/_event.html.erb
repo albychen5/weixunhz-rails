@@ -5,14 +5,13 @@
         <%= link_to (image_tag event.image.url(:medium), class:'img-responsive'), event_path(event) %>
       </div>
       <div class="card-content">
-      <%= fa_icon "calendar" %> <%= info_not_specified(event, event.date) %> <%= info_not_specified(event, event.event_time) %>
+      <%= fa_icon "calendar" %> <%= event.date %> <%= event.event_time %>
       <%= event.name %>
-      <%= fa_icon "map-marker" %> <%= info_not_specified(event, event.location) %>
-      <%= fa_icon "user" %> <%= link_to returns_event_owner(event.user_id).username, profile_path(returns_event_owner(event.user_id).username) %>
+      <%= fa_icon "map-marker" %> <%= event.location %>
+      <%= fa_icon "user" %> <%= link_to event.user.username, profile_path(event.user.username) %>
       </div>
       <div class="card-action">
-        <%= link_to "Register", new_registration_path(event), id: "register_#{event.id}" %>
-        <a href="#">Interested</a>
+        <%= link_to "Register", new_event_attendee_path(event), id: "register_#{event.id}" %>
         <%= link_to "More Info", event_path(event) %>
       </div>
     </div>

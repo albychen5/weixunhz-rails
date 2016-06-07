@@ -18,7 +18,6 @@
             </div>
           </div>
           <div class="container-fluid">
-            <%= f.hidden_field :user_id, value: @current_user.id %>
             <div class="form-group text-center">
               <h4>Upload cover image for your event:</h4>
               <%= f.input :image, label: false, input_html: { onChange: 'loadFile(event)' } %>
