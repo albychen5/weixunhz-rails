@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LYVE 微醺</title>
+    <title>LYVE</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tags %>
   </head>
-  <body>
 
-  <%= render "layouts/navbar" %>
+  <!-- Display background image for splash page only -->
+  <% if current_page?(root_path) %>
+    <body class="welcome"> 
+  <% else %>
+    <body>
+    <%= render "layouts/navbar" %>
+  <% end %>
 
     <div class="container">
+      <!-- TODO: Get this working // Flash Messages -->
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, class: [:alert, alert_for(name)] %>
       <% end %>
+
+      <!-- Actual content for webapp -->
       <%= yield %>
 
+      <!-- FAB button -->
       <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large red">
-          <i class="material-icons"><%= fa_icon "bars" %></i>
+        <a class="btn-floating btn-large amber darken-1">
+          <i class="material-icons"><%= fa_icon "plus" %></i>
         </a>
         <ul>
-          <li><%= link_to (fa_icon "plus"), new_event_path, class: "btn-floating yellow darken-1" %></li>
-          <li><%= link_to (fa_icon "search"), browse_events_path, class: "btn-floating green" %></li>
-          <li><%= link_to (fa_icon "home"), root_path, class: "btn-floating blue" %></li>
+          <li><%= link_to (fa_icon "calendar"), new_event_path, class: "btn-floating red darken-1" %></li>
+          <li><%#= link_to (fa_icon "heart-o"), new_proposal_path, class: "btn-floating blue darken-1" %></li>
         </ul>
       </div>
     </div>

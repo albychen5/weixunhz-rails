@@ -1,44 +1,53 @@
-<div class="events-wrapper">
-  <div class="event">
-    <div class="event-body">
-      <div class="image-wrap">
-	      <%= form_image_select(@event) %>
+<div class="row">
+  <div class="col s12 m8 offset-m2">
+    <div class="card">
+      <div class="card-image">
+        <%= form_image_select(@event) %>
+        <span class="card-title">Create a New Event</span>
+      </div>
+      <div class="card-content">
         <%= simple_form_for @event, html: { multipart: true } do |f| %>
-          <div class="row">
-            <div class="col-md-12 text-center">
-              <%= f.error_notification %>
-                <% if @event.errors.any? %>
-                  <h3>Error</h3>
-                  <ul>
-                      <% @event.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                      <% end %>
-                  </ul>
-                <% end %>
-            </div>
+
+        <!-- Error Section -->
+        <div class="row">
+          <%= f.error_notification %>
+          <% if @event.errors.any? %>
+          <h3>Error</h3>
+          <ul>
+            <% @event.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+          <% end %>
+        </div>
+
+        <!-- Form Section -->
+        <div class="container-fluid">
+          <div class="form-group center-align">
+            <h5>Upload cover image for your event:</h4>
+            <%= f.input :image, label: false, input_html: { onChange: 'loadFile(event)' } %>
           </div>
-          <div class="container-fluid">
-            <div class="form-group text-center">
-              <h4>Upload cover image for your event:</h4>
-              <%= f.input :image, label: false, input_html: { onChange: 'loadFile(event)' } %>
-            </div>
-            <div class="form-group text-center">
-              <%= f.input :name, label: false, placeholder: 'Add your event name' %>
-            </div>
-            <div class="form-group text-center">
-              <%= f.input :location, label: false, placeholder: 'Add your event location' %>
-            </div>
-            <div class="form-group text-center">
-              <%= f.input :date, as: :date, start_year: Date.today.year, label: 'Date of event: ' %>
-              <%= f.input :event_time, as: :time, label: 'Time of event: ' %>
-            </div>
-            <div class="form-group text-center">
-              <%= f.input :details, label: false, placeholder: 'Add your event details' %>
-            </div>
-            <div class="form-group text-center">
-              <%= f.button :submit, class: 'btn-success btn-block' %>
-            </div>
+          <div class="form-group center-align">
+            <%#= f.input :group_id, collection: @groups, label_method: :name, label: "Select a group", value_method: :id, selected: @event.group_id %>
+           <%= f.collection_select :group_id, Group.all, :id, :name, { prompt: "Choose a group" }, class: "browser-default" %>
           </div>
+          <div class="form-group center-align">
+            <%= f.input :name, label: false, placeholder: 'Add your event name' %>
+          </div>
+          <div class="form-group center-align">
+            <%= f.input :location, label: false, placeholder: 'Add your event location' %>
+          </div>
+          <div class="form-group left-align">
+            <%#= f.input :date, as: :date, start_year: Date.today.year, label: 'Date of event: ' %>
+            <%#= f.input :event_time, as: :time, label: 'Time of event: ' %>
+          </div>
+          <div class="form-group center-align">
+            <%= f.input :details, label: false, placeholder: 'Add your event details' %>
+          </div>
+          <div class="form-group center-align">
+            <%= f.button :submit, class: 'btn-success btn-block' %>
+          </div>
+        </div>
         <% end %>
       </div>
     </div>

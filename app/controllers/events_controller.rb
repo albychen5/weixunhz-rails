@@ -13,10 +13,12 @@ class EventsController < ApplicationController
 
 	def new
 		@event = current_user.events.build
+		@groups = Group.all
 	end
 
 	def create
 		@event = current_user.events.build(event_params)
+		@groups = Group.all
 		if @event.save
 			flash[:success] = "Event created!"
 			redirect_to root_path
@@ -82,7 +84,7 @@ class EventsController < ApplicationController
 	end
 	
 	def event_params
-		params.require(:event).permit(:image, :name, :location, :date, :event_time, :details)
+		params.require(:event).permit(:image, :name, :location, :date, :event_time, :details, :group_id)
 	end
 
 	def set_event

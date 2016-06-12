@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col s12 m8 offset-m2">
+    <div class="card">
+      <!-- div for group title and info -->
+      <div class="card-content">
+        <span class="card-title"><%= @group.name %></span>
+        <p><%= @group.info %></p>
+      </div>
+      <div class="divider"></div>
+      <div class="card-content center-align">
+      <%= button_to 'New Proposal', new_group_proposal_path(@group),  method: :get, class: "btn waves-effect waves-light" %>
+      <%= button_to 'New Event', new_event_path,  method: :get, class: "btn waves-effect waves-light" %>
+      </div>
+      <!-- div for group members -->
+      <div class="card-content">
+        <span class="card-title">Members</span>
+        <% @group.users.each do |user| %>
+          <p><%= user.username %></p>
+        <% end %>
+      </div>
+      <!-- div for group events -->
+      <div class="card-content">
+        <span class="card-title">All Events</span>
+        <% @group.events.each do |event| %>
+          <p><%= link_to event.name, event_path(event)%></p>
+        <% end %>
+      </div>
+      <!-- div for group proposals -->
+      <div class="card-content">
+        <span class="card-title">Proposals</span>
+        <% @group.proposals.each do |proposal| %>
+          <p><%= link_to proposal.name, group_proposal_path(@group, proposal) %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

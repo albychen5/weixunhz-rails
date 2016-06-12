@@ -1,4 +1,18 @@
-<h1>LYVE</h1>
-<h3>Welcome to Lyve</h3>
-<h5>Upcoming Events</h5>
-<h5>Event Proposals</h5>
+<header>
+	<div class="row">
+		<div class="col m8 s12 offset-m2">
+			<div class="header-content">
+				<div class="header-content-text">
+					<h1>LYVE</h1>
+					<p>Manage events in your groups.</p>
+					<p>Vote on new event ideas.</p>
+				</div>
+				<div class="col l4 offset-l4">
+				<%= link_to 'Events', events_path, class: "splash-button waves-effect waves-light amber darken-1 btn" %>
+				<%= link_to 'Proposals', proposals_path, class:"splash-button waves-effect waves-light amber darken-1 btn" %>
+				<%= link_to 'Register', new_user_registration_path, class:"splash-button waves-effect waves-light amber darken-1 btn" %>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>

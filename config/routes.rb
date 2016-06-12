@@ -14,12 +14,16 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :proposals do 
-    member do
-      get 'like'
-      get 'unlike'
+  resources :groups do
+    resources :proposals do 
+      member do
+        get 'like'
+        get 'unlike'
+      end
     end
   end
+
+  
 
   get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through
   get 'notifications', to: 'notifications#index'

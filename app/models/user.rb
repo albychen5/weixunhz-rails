@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   has_many :attendees, through: :events
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  
+  # join table for describing user properties in groups
+  has_many :group_relationships
+  has_many :groups, through: :group_relationships
 
   has_many :follower_relationships, foreign_key: :following_id, class_name: 'Follow'
   has_many :followers, through: :follower_relationships, source: :follower

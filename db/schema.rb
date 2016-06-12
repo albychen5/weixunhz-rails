@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606124651) do
+ActiveRecord::Schema.define(version: 20160608140308) do
 
   create_table "attendees", force: :cascade do |t|
     t.string   "name"
@@ -47,8 +47,10 @@ ActiveRecord::Schema.define(version: 20160606124651) do
     t.date     "date"
     t.text     "details"
     t.time     "event_time"
+    t.integer  "group_id"
   end
 
+  add_index "events", ["group_id"], name: "index_events_on_group_id"
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "follows", force: :cascade do |t|
@@ -61,6 +63,24 @@ ActiveRecord::Schema.define(version: 20160606124651) do
   add_index "follows", ["follower_id"], name: "index_follows_on_follower_id"
   add_index "follows", ["following_id", "follower_id"], name: "index_follows_on_following_id_and_follower_id", unique: true
   add_index "follows", ["following_id"], name: "index_follows_on_following_id"
+
+  create_table "group_relationships", force: :cascade do |t|
+    t.boolean  "admin"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "group_relationships", ["group_id"], name: "index_group_relationships_on_group_id"
+  add_index "group_relationships", ["user_id"], name: "index_group_relationships_on_user_id"
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.string   "info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
@@ -83,8 +103,10 @@ ActiveRecord::Schema.define(version: 20160606124651) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "group_id"
   end
 
+  add_index "proposals", ["group_id"], name: "index_proposals_on_group_id"
   add_index "proposals", ["user_id"], name: "index_proposals_on_user_id"
 
   create_table "users", force: :cascade do |t|

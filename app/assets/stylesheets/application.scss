@@ -7,10 +7,23 @@ html {
   height: 100%;
 }
 
-body {  
+body {
   height: 100%;
   background-color: #fafafa;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.welcome {
+  background: url("background.jpg");
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.container {
+  min-height: 100%;
 }
 
 .alert {
@@ -21,6 +34,37 @@ body {
 
 .navbar {
   margin-bottom: 0px;
+}
+
+nav {
+    height: 42px;
+    line-height: 42px;
+}
+
+nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
+    height: 42px;
+    line-height: 42px;
+}
+
+nav .button-collapse i {
+    height: 42px;
+    line-height: 42px;
+}
+
+nav .brand-logo { 
+    font-size: 1.6rem; 
+}
+
+@media only screen and (min-width: 601px){
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+        height: 42px;
+        line-height: 42px;
+    }
+}
+
+nav ul a {
+  min-width: 64px;
+  text-align: center;
 }
 
 /* ## event CUSTOMISATIONS ## */
@@ -304,4 +348,28 @@ body {
     background-color: #47821F;
     color: white;
   }
+}
+
+header {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  text-align: center;
+  color: #ffca28;
+}
+
+header .header-content {
+  position: relative;
+  width: 100%;
+  padding: 130px 15px;
+  text-align: center;
+}
+
+header .header-content-text {
+  margin-bottom: 40px;
+}
+
+.splash-button {
+  width: 200px;
+  margin-bottom: 20px;
 }

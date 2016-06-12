@@ -1,22 +1,25 @@
 <div class="navbar">
-  <nav class="pink darken-3" role="navigation">
+  <nav class="amber darken-1" role="navigation">
     <div class="nav-wrapper container">
-      <div class="brand-logo">
+      <div class="brand-logo hide-on-med-and-down">
         <%= link_to "LYVE微醺", root_path %>
       </div>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <ul id="nav-mobile" class="right">
         <% if user_signed_in? %>
         <li>
           <%#= render 'notifications/notification_dropdown' %>
         </li>
         <li>
-          <%= link_to "Explore", browse_events_path %>
+          <%#= link_to (fa_icon "heart-o"), group_proposals_path %>
         </li>
         <li>
-          <%= link_to "Create Event", new_event_path %>
+          <%= link_to (fa_icon "calendar"), events_path %>
         </li>
         <li>
-          <%= link_to "Logout (" + current_user.username.to_s + ")", destroy_user_session_path, method: :delete %>
+          <%= link_to (fa_icon "search"), browse_events_path %>
+        </li>
+        <li>
+          <%= link_to (fa_icon "user") + " " + current_user.username.to_s, destroy_user_session_path, method: :delete %>
         </li>
         <% else %>
         <li>
