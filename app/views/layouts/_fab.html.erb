@@ -1,0 +1,9 @@
+<div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
+	<a class="btn-floating btn-large amber darken-1">
+		<i class="material-icons"><%= fa_icon "plus" %></i>
+	</a>
+	<ul>
+		<li><%= link_to (fa_icon "calendar"), new_group_event_path(group), class: "btn-floating red darken-1" %></li>
+		<li><%= link_to (fa_icon "heart-o"), new_group_proposal_path(group), class: "btn-floating blue darken-1" %></li>
+	</ul>
+</div>

@@ -9,21 +9,26 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
-  resources :events do
-    resources :attendees
-    resources :comments
-  end
-
-  resources :groups do
-    resources :proposals do 
+  resources :groups, shallow: true do
+    resources :events do
+      resources :attendees
+    end
+    resources :proposals do
       member do
         get 'like'
         get 'unlike'
       end
+      # TODO Comment routes, add back in once comments are reimplemented.
+      # resources :comments
     end
   end
 
-  
+  # resources :proposals do
+  #     member do
+  #       get 'like'
+  #       get 'unlike'
+  #     end
+  #   end
 
   get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through
   get 'notifications', to: 'notifications#index'

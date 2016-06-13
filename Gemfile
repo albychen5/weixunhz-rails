@@ -18,6 +18,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+gem 'jquery-turbolinks' #turbolinks gem
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -31,10 +32,10 @@ gem 'capybara' #test framework
 gem 'factory_girl_rails' #factory creation gem
 gem 'devise' #authentication gem
 gem 'kaminari' #pagination gem
-gem 'jquery-turbolinks' #turbolinks gem
 gem 'acts_as_votable', '~> 0.10.0' #voting gem
 gem 'materialize-sass'
 gem "font-awesome-rails"
+gem 'materialize-form'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

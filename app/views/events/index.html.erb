@@ -3,6 +3,9 @@
     <%= render 'event', event: event %>
   <% end %>
 </div>
+
+<%= render 'layouts/fab', group: @group %>
+
 <div class="text-center" id="paginator">
 	<%= link_to_next_page @events, 'More Events', remote: true, id: 'load_more' %>
 </div>

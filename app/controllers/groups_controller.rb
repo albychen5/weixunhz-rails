@@ -1,9 +1,9 @@
 class GroupsController < ApplicationController
-	before_action :set_group
+	before_action :set_group, except: [:index]
 
 	def index
 		#index shows all groups current user is a part of
-		@groups = Group.where(user_id: current_user.id).all
+		@groups = Group.all
 		#if not logged in index will prompt user to login/signup
 	end
 
@@ -39,6 +39,8 @@ class GroupsController < ApplicationController
 	end
 
 	def show
+		@events = Event.all.order('created_at DESC')
+		@proposals = Proposal.order(cached_votes_up: :desc)
 	end
 
 	def destroy

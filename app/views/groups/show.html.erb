@@ -2,36 +2,65 @@
   <div class="col s12 m8 offset-m2">
     <div class="card">
       <!-- div for group title and info -->
-      <div class="card-content">
+      <div class="card-content center-align">
         <span class="card-title"><%= @group.name %></span>
         <p><%= @group.info %></p>
+        <p><%= @group.events.size %> Events | <%= @group.proposals.size %> Proposals</p>
       </div>
-      <div class="divider"></div>
-      <div class="card-content center-align">
-      <%= button_to 'New Proposal', new_group_proposal_path(@group),  method: :get, class: "btn waves-effect waves-light" %>
-      <%= button_to 'New Event', new_event_path,  method: :get, class: "btn waves-effect waves-light" %>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s6"><a href="#events" class="active">Events</a></li>
+          <li class="tab col s6"><a href="#proposals">Proposals</a></li>
+          </ul>
       </div>
-      <!-- div for group members -->
-      <div class="card-content">
-        <span class="card-title">Members</span>
-        <% @group.users.each do |user| %>
-          <p><%= user.username %></p>
+
+      <!-- Events Tab -->
+      <div id="events" class="col s12">
+        <% @events.each do |event| %>
+          <%= render 'event', event: event %>
         <% end %>
       </div>
-      <!-- div for group events -->
-      <div class="card-content">
-        <span class="card-title">All Events</span>
-        <% @group.events.each do |event| %>
-          <p><%= link_to event.name, event_path(event)%></p>
-        <% end %>
-      </div>
-      <!-- div for group proposals -->
-      <div class="card-content">
-        <span class="card-title">Proposals</span>
-        <% @group.proposals.each do |proposal| %>
-          <p><%= link_to proposal.name, group_proposal_path(@group, proposal) %></p>
+
+      <!-- Proposals Tab -->
+      <div id="proposals" class="col s12">
+        <% @proposals.each do |proposal| %>
+          <%= render 'proposals/proposal', proposal: proposal %>
         <% end %>
       </div>
     </div>
+    <!-- card for group events -->
+<!--     <div class="card">
+      <div class="card-content">
+        <span class="card-title"><%#= link_to 'Events', group_events_path(@group) %></span>
+        <%# @group.events.each do |event| %>
+        <p><%#= link_to event.name, event_path(event) %></p>
+        <%# end %>
+      </div>
+    </div> -->
+
+    <!-- card for group proposals -->
+<!--     <div class="card">
+      <div class="card-content">
+        <span class="card-title"><%#= link_to 'Proposals', group_proposals_path(@group) %></span>
+        <%# @group.proposals.each do |proposal| %>
+        <p><%#= link_to proposal.name, proposal_path(proposal) %></p>
+        <%# end %>
+      </div>
+    </div> -->
+
+    <!-- card for group members -->
+<!--     <div class="card">
+      <div class="card-content">
+        <span class="card-title">Members</span>
+        <%# @group.users.each do |user| %>
+        <p><%#= link_to user.username, profile_path(user.username) %></p>
+        <%# end %>
+      </div>
+    </div> -->
   </div>
 </div>
+
+<%= render 'layouts/fab', group: @group %>

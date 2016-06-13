@@ -1,18 +1,15 @@
 <div class="row">
   <div class="col s12 m8 offset-m2">
     <div class="card">
-      <div class="card-image">
-        <%= form_image_select(@event) %>
-        <span class="card-title">Create a New Event</span>
-      </div>
       <div class="card-content">
-        <%= simple_form_for @event, html: { multipart: true } do |f| %>
+      <div class="center-align"><span class="card-title">Create a New Event</span></div>
+        <%= simple_form_for [@group, @event], html: { multipart: true } do |f| %>
 
         <!-- Error Section -->
         <div class="row">
+        <div class="col s12 m10 offset-m1 center-align">
           <%= f.error_notification %>
           <% if @event.errors.any? %>
-          <h3>Error</h3>
           <ul>
             <% @event.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -20,35 +17,25 @@
           </ul>
           <% end %>
         </div>
+        </div>
 
         <!-- Form Section -->
-        <div class="container-fluid">
-          <div class="form-group center-align">
-            <h5>Upload cover image for your event:</h4>
-            <%= f.input :image, label: false, input_html: { onChange: 'loadFile(event)' } %>
-          </div>
-          <div class="form-group center-align">
-            <%#= f.input :group_id, collection: @groups, label_method: :name, label: "Select a group", value_method: :id, selected: @event.group_id %>
-           <%= f.collection_select :group_id, Group.all, :id, :name, { prompt: "Choose a group" }, class: "browser-default" %>
-          </div>
-          <div class="form-group center-align">
-            <%= f.input :name, label: false, placeholder: 'Add your event name' %>
-          </div>
-          <div class="form-group center-align">
-            <%= f.input :location, label: false, placeholder: 'Add your event location' %>
-          </div>
-          <div class="form-group left-align">
-            <%#= f.input :date, as: :date, start_year: Date.today.year, label: 'Date of event: ' %>
-            <%#= f.input :event_time, as: :time, label: 'Time of event: ' %>
-          </div>
-          <div class="form-group center-align">
-            <%= f.input :details, label: false, placeholder: 'Add your event details' %>
-          </div>
-          <div class="form-group center-align">
-            <%= f.button :submit, class: 'btn-success btn-block' %>
-          </div>
-        </div>
+        <div class="row">
+            <%= f.input :image, label: 'Add Cover Image', input_html: { onChange: 'loadFile(event)' }, wrapper_html: { class: 'm10 s12 offset-m1' } %>
+            <%= f.input :group_id, collection: @groups, label_method: :name, label: "Select a group", selected: @event.group_id, wrapper_html: { class: 'm10 s12 offset-m1' } %>
+           <%#= f.collection_select :group_id, Group.all, :id, :name, { prompt: "Choose a group" }, wrapper_html: { class: 'm8 s12 offset-m2' } %>
+            <%= f.input :name, label: 'Add your event name', placeholder: false , wrapper_html: { class: 'm10 s12 offset-m1' } %>
+            <%= f.input :location, label: 'Add your event location', placeholder: false, wrapper_html: { class: 'm10 s12 offset-m1' } %>
+            <%= f.input :date, label: 'Date of event: ', wrapper_html: { class: 'm10 s12 offset-m1' } %>
+            <%#= f.input :event_time, label: 'Time of event: ', wrapper_html: { class: 'm10 s12 offset-m1' } %>
+            <%= f.input :details, label: 'Add your event info (time, links)', placeholder: false, wrapper_html: { class: 'm10 s12 offset-m1' } %>
+            <div class="row">
+            <div class="col s12 offset-s3 offset-m4">
+            <%= f.button :submit, class: 'btn-success btn-block'%>
+            </div>
+            </div>
         <% end %>
+        </div>
       </div>
     </div>
   </div>

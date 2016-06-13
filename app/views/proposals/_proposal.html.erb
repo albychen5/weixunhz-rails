@@ -1,0 +1,14 @@
+<div class="card">
+	<!-- Title of Proposal -->
+	<div class="card-content">
+		<span class="card-title"><%= proposal.name %></span>
+		<p><%= proposal.info %></p>
+	</div>
+	<div class="divider"></div>
+	<!-- Actions for proposal -->
+	<div class="card-content">
+		<p>Created by: <%= proposal.user.username %></p>
+		<p><%= proposal.votes_for.size %> people like <%= link_to 'Like', like_proposal_path(proposal) %></p>
+		<p><%= link_to 'Edit', edit_proposal_path(proposal) %> <%= link_to 'Delete', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+	</div>
+</div>

@@ -170,33 +170,6 @@ nav ul a {
   margin-bottom: 40px;
 }
 
-.registration-bg {
-  padding-top: 4em;
-  height: 100%;
-  background-image: image-url('regbackg.jpg');
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.login-bg {
-  padding-top: 4em;
-  height: 100%;
-  background-image: image-url('regbackg.jpg');
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.log-in{
-  margin-left: auto;
-  margin-right: auto;
-  text-align:center;
-  border: none;
-}
-
 .panel {
   border-radius: 8px;
 }
@@ -372,4 +345,16 @@ header .header-content-text {
 .splash-button {
   width: 200px;
   margin-bottom: 20px;
+}
+
+// Tab coloring
+.tabs .indicator {
+  background-color: #ffc107;
+}
+
+.tabs li.tab a {
+  color: #ffc107;
+  &:hover{
+    color: #ffe082;
+  }
 }

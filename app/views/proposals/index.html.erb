@@ -1,38 +1,9 @@
-<p id="notice"><%= notice %></p>
-
 <div class="row">
   <div class="col s12 m8 offset-m2">
-    <div class="card">
-      <div class="card-content">
-        <span class="card-title">Current Proposals</span>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Likes</th>
-              <th>Name</th>
-              <th>Info</th>
-              <th>User</th>
-              <th colspan="4"></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @proposals.each do |proposal| %>
-            <tr>
-              <td><%= proposal.votes_for.size %></td>
-              <td><%= proposal.name %></td>
-              <td><%= proposal.info %></td>
-              <td><%= proposal.user.username %></td>
-              <td><%= link_to 'Like', like_proposal_path(proposal) %></td>
-              <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
-              <td><%= link_to 'Delete', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <%= button_to 'New Proposal', new_proposal_path,  method: :get, class: "btn waves-effect waves-light" %>
+    <% @proposals.each do |proposal| %>
+      <%= render 'proposal', proposal: proposal %>
+    <% end %>
   </div>
 </div>
+
+<%= render 'layouts/fab', group: @group %>

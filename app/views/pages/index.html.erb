@@ -7,10 +7,15 @@
 					<p>Manage events in your groups.</p>
 					<p>Vote on new event ideas.</p>
 				</div>
-				<div class="col l4 offset-l4">
-				<%= link_to 'Events', events_path, class: "splash-button waves-effect waves-light amber darken-1 btn" %>
-				<%= link_to 'Proposals', proposals_path, class:"splash-button waves-effect waves-light amber darken-1 btn" %>
+				<div class="row">
+				<div class="col m4 offset-m4">
+
+				<!-- TODO: figure out new workflow with group-first routing -->
+				<%#= link_to 'Events', events_path, class: "splash-button waves-effect waves-light amber darken-1 btn" %>
+				<%#= link_to 'Proposals', proposals_path, class:"splash-button waves-effect waves-light amber darken-1 btn" %>
 				<%= link_to 'Register', new_user_registration_path, class:"splash-button waves-effect waves-light amber darken-1 btn" %>
+				<%= link_to 'Log In', new_user_session_path, class:"splash-button waves-effect waves-light amber darken-1 btn" %>
+				</div>
 				</div>
 			</div>
 		</div>

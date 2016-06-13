@@ -1,10 +1,10 @@
-<%= simple_form_for(@proposal) do |f| %>
+<%= simple_form_for [@group, @proposal] do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :info %>
-    <!-- Add in a collection select for the group this proposal goes to -->
+	  <%= f.input :group_id, collection: @groups, label_method: :name, label: "Select a group", selected: @proposal.group_id, wrapper_html: { class: 'm10 s12 offset-m1' } %>
+    <%= f.input :name, wrapper_html: { class: 'm10 s12 offset-m1' } %>
+    <%= f.input :info, wrapper_html: { class: 'm10 s12 offset-m1' } %>
   </div>
 
   <div class="form-actions">

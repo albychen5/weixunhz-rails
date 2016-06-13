@@ -4,7 +4,8 @@ class ProposalsController < ApplicationController
   # GET /proposals
   # GET /proposals.json
   def index
-    @proposals = Proposal.all
+    @proposals = Proposal.order(cached_votes_up: :desc)
+    @group = Group.find_by(params[:group_id])
   end
 
   # GET /proposals/1
@@ -15,6 +16,8 @@ class ProposalsController < ApplicationController
   # GET /proposals/new
   def new
     @proposal = Proposal.new
+    @group = Group.find_by(params[:group_id])
+    @groups = Group.all
   end
 
   # GET /proposals/1/edit
@@ -25,6 +28,8 @@ class ProposalsController < ApplicationController
   # POST /proposals.json
   def create
     @proposal = Proposal.new(proposal_params)
+    @group = Group.find_by(params[:group_id])
+    @groups = Group.all
     @proposal.user_id = current_user.id if current_user
 
     respond_to do |format|
@@ -80,6 +85,6 @@ class ProposalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def proposal_params
-      params.require(:proposal).permit(:name, :info)
+      params.require(:proposal).permit(:name, :info, :group_id)
     end
 end

@@ -4,6 +4,7 @@ class EventsController < ApplicationController
 	before_action :event_owner_verification, only: [:edit, :update, :destroy]
 
 	def index
+		@group = Group.find_by(params[:group_id])
 		if user_signed_in?
 			@events = current_user.events_feed.order('created_at DESC').page params[:page]
 		else
@@ -13,15 +14,17 @@ class EventsController < ApplicationController
 
 	def new
 		@event = current_user.events.build
+		@group = Group.find_by(params[:group_id])
 		@groups = Group.all
 	end
 
 	def create
 		@event = current_user.events.build(event_params)
+		@group = Group.find_by(params[:group_id])
 		@groups = Group.all
 		if @event.save
 			flash[:success] = "Event created!"
-			redirect_to root_path
+			redirect_to event_path(@event)
 		else
 			flash.now[:alert] = "Event could not be created."
 			render :new
@@ -48,26 +51,26 @@ class EventsController < ApplicationController
 	def destroy
 		@event.destroy
 		flash[:success] = "Event deleted!"
-		redirect_to root_path
+		redirect_to events_path
 	end
 
-	def like
-		@event.liked_by current_user
-		create_notification @event
-		respond_to do |format|
-			format.html { redirect_to :back }
-			format.js
-		end
-	end
+	# def like
+	# 	@event.liked_by current_user
+	# 	create_notification @event
+	# 	respond_to do |format|
+	# 		format.html { redirect_to :back }
+	# 		format.js
+	# 	end
+	# end
 
-	def unlike
-		@event.unliked_by current_user
-		create_notification @event
-		respond_to do |format|
-			format.html { redirect_to :back }
-			format.js
-		end
-	end
+	# def unlike
+	# 	@event.unliked_by current_user
+	# 	create_notification @event
+	# 	respond_to do |format|
+	# 		format.html { redirect_to :back }
+	# 		format.js
+	# 	end
+	# end
 
 	def browse
 		@events = Event.all.order('created_at DESC').page params[:page]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608140308) do
+ActiveRecord::Schema.define(version: 20160613071748) do
 
   create_table "attendees", force: :cascade do |t|
     t.string   "name"
@@ -101,11 +101,25 @@ ActiveRecord::Schema.define(version: 20160608140308) do
     t.string   "name"
     t.text     "info"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "group_id"
+    t.integer  "cached_votes_total",      default: 0
+    t.integer  "cached_votes_score",      default: 0
+    t.integer  "cached_votes_up",         default: 0
+    t.integer  "cached_votes_down",       default: 0
+    t.integer  "cached_weighted_score",   default: 0
+    t.integer  "cached_weighted_total",   default: 0
+    t.float    "cached_weighted_average", default: 0.0
   end
 
+  add_index "proposals", ["cached_votes_down"], name: "index_proposals_on_cached_votes_down"
+  add_index "proposals", ["cached_votes_score"], name: "index_proposals_on_cached_votes_score"
+  add_index "proposals", ["cached_votes_total"], name: "index_proposals_on_cached_votes_total"
+  add_index "proposals", ["cached_votes_up"], name: "index_proposals_on_cached_votes_up"
+  add_index "proposals", ["cached_weighted_average"], name: "index_proposals_on_cached_weighted_average"
+  add_index "proposals", ["cached_weighted_score"], name: "index_proposals_on_cached_weighted_score"
+  add_index "proposals", ["cached_weighted_total"], name: "index_proposals_on_cached_weighted_total"
   add_index "proposals", ["group_id"], name: "index_proposals_on_group_id"
   add_index "proposals", ["user_id"], name: "index_proposals_on_user_id"
 
