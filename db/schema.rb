@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615063312) do
+ActiveRecord::Schema.define(version: 20160615195108) do
 
   create_table "attendees", force: :cascade do |t|
     t.string   "name"
@@ -54,17 +54,6 @@ ActiveRecord::Schema.define(version: 20160615063312) do
   add_index "events", ["group_id"], name: "index_events_on_group_id"
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
-  create_table "follows", force: :cascade do |t|
-    t.integer  "following_id", null: false
-    t.integer  "follower_id",  null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "follows", ["follower_id"], name: "index_follows_on_follower_id"
-  add_index "follows", ["following_id", "follower_id"], name: "index_follows_on_following_id_and_follower_id", unique: true
-  add_index "follows", ["following_id"], name: "index_follows_on_following_id"
-
   create_table "group_relationships", force: :cascade do |t|
     t.boolean  "admin"
     t.integer  "user_id"
@@ -82,21 +71,6 @@ ActiveRecord::Schema.define(version: 20160615063312) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "notifications", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "notified_by_id"
-    t.integer  "event_id"
-    t.integer  "identifier"
-    t.string   "notice_type"
-    t.boolean  "read",           default: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-  end
-
-  add_index "notifications", ["event_id"], name: "index_notifications_on_event_id"
-  add_index "notifications", ["notified_by_id"], name: "index_notifications_on_notified_by_id"
-  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id"
 
   create_table "proposals", force: :cascade do |t|
     t.string   "name"

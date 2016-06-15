@@ -79,14 +79,6 @@ class EventsController < ApplicationController
 	end
 
 	private
-	def create_notification(event)
-		return if event.user.id == current_user.id
-		Notification.create(user_id: event.user.id,
-												notified_by_id: current_user.id,
-												event_id: event.id,
-												identifier: event.id,
-												notice_type: 'like')
-	end
 	
 	def event_params
 		params.require(:event).permit(:image, :name, :location, :date, :event_time, :details, :group_id)
