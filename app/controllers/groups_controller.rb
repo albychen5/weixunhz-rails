@@ -21,6 +21,7 @@ class GroupsController < ApplicationController
 			@group_relationship.admin = true
 			@group_relationship.user_id = current_user.id
 			@group_relationship.group_id = @group.id
+			@group_relationship.save
 			redirect_to groups_path
 		else
 			render :new
