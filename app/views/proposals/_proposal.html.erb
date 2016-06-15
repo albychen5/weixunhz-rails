@@ -1,14 +1,29 @@
 <div class="card">
 	<!-- Title of Proposal -->
 	<div class="card-content">
-		<span class="card-title"><%= proposal.name %></span>
-		<p><%= proposal.info %></p>
-	</div>
-	<div class="divider"></div>
-	<!-- Actions for proposal -->
-	<div class="card-content">
-		<p>Created by: <%= proposal.user.username %></p>
-		<p><%= proposal.votes_for.size %> people like <%= link_to 'Like', like_proposal_path(proposal) %></p>
-		<p><%= link_to 'Edit', edit_proposal_path(proposal) %> <%= link_to 'Delete', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+		<div class="row ">
+			<div class="col s12 l12">
+				<span class="card-title"><%= proposal.name %></span>
+				<p><%= proposal.info %></p>
+			</div>
+		</div>
+
+<!-- 		<div class="row">
+			<div class="col s11 offset-s1">
+			Created by: <%#= proposal.user.username %>
+			</div>
+		</div> -->
+
+		<div class="row valign-wrapper">
+			<div class="col s4 chip valign center-align">
+			<%= proposal.votes_for.size %> <%= fa_icon "heart" %>
+			</div>
+			<div class="col s4 center-align">
+			<%= button_to 'Like', like_proposal_path(proposal), method: :get, class: "amber lighten-2 btn" %>
+			</div>
+			<div class="col s4 center-align">
+			<%= button_to 'Edit', edit_proposal_path(proposal), method: :get, class: "amber lighten-2 btn" %>
+			</div>
+		</div>
 	</div>
 </div>

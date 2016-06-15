@@ -10,5 +10,7 @@
 		</div>
 	</div>
 </div>
-<%= link_to 'Show', @proposal %> |
-<%= link_to 'Back', proposals_path %>
+<div class="center-align">
+<%= link_to 'Back', :back %> |
+<%= link_to 'Delete', @proposal, method: :delete, data: { confirm: 'delete this proposal?' } %>
+</div>

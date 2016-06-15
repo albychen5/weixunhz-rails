@@ -3,6 +3,7 @@
 
   <div class="form-inputs">
 	  <%= f.input :group_id, collection: @groups, label_method: :name, label: "Select a group", selected: @proposal.group_id, wrapper_html: { class: 'm10 s12 offset-m1' } %>
+	  
     <%= f.input :name, wrapper_html: { class: 'm10 s12 offset-m1' } %>
     <%= f.input :info, wrapper_html: { class: 'm10 s12 offset-m1' } %>
   </div>

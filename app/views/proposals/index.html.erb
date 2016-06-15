@@ -1,9 +1,15 @@
 <div class="row">
-  <div class="col s12 m8 offset-m2">
-    <% @proposals.each do |proposal| %>
-      <%= render 'proposal', proposal: proposal %>
-    <% end %>
-  </div>
+	<div class="col s12 m8 offset-m2">
+		<div class="card">
+			<div class="card-content center-align">
+				Proposals for <%= link_to @group.name, group_path(@group) %>
+			</div>
+		</div>
+
+		<% @proposals.each do |proposal| %>
+		<%= render 'proposal', proposal: proposal %>
+		<% end %>
+	</div>
 </div>
 
 <%= render 'layouts/fab', group: @group %>

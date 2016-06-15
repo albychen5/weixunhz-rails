@@ -7,10 +7,10 @@
             <%= f.error_notification %>
             <div class="row">
             <div class="col s12 m4 offset-m4">
-              <%= f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email', input_html: { class: 'input-lg' } %>
-              <%= f.input :username, required: true, label: false, placeholder: 'Username', input_html: { class: 'input-lg' } %>
-              <!-- Add in phone number once rspec tests are written -->
-              <%#= f.input :phone_number, required: true, label: false, placeholder: 'Phone Number', input_html: { class: 'input-lg' } %>
+              <%= f.input :username, required: true, label: 'username', placeholder: 'required', input_html: { class: 'input-lg' } %>
+              <%= f.input :phone_number, required: false, label: 'phone number', placeholder: 'optional', input_html: { class: 'input-lg' } %>
+              <%= f.input :wechat_id, required: false, label: 'wechat id', placeholder: 'optional', input_html: { class: 'input-lg' } %>
+              <%= f.input :email, required: true, autofocus: false, label: 'email', placeholder: 'required', input_html: { class: 'input-lg' } %>
               <%= f.input :password, required: true, label: false, placeholder: 'Password', input_html: { class: 'input-lg' } %>
               <%= f.input :password_confirmation, required: true, label: false, placeholder: 'Confirm Password', input_html: { class: 'input-lg' } %>
               <%= f.button :submit, "Sign up", class: 'btn-lg btn-info btn-block' %>

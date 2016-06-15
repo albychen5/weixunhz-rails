@@ -22,6 +22,7 @@ class ProposalsController < ApplicationController
 
   # GET /proposals/1/edit
   def edit
+    @groups = Group.all
   end
 
   # POST /proposals
