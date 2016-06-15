@@ -1,66 +1,34 @@
 <div class="row">
-  <div class="col s12 m8 offset-m2">
-    <div class="card">
-      <!-- div for group title and info -->
-      <div class="card-content center-align">
-        <span class="card-title"><%= @group.name %></span>
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="panel panel-default text-center">
+      <div class="panel-body">
+        <span class="section-title"><%= @group.name %></span>
         <p><%= @group.info %></p>
-        <p><%= @group.events.size %> Events | <%= @group.proposals.size %> Proposals</p>
       </div>
     </div>
 
     <div class="row">
-      <div class="col s12">
-        <ul class="tabs">
-          <li class="tab col s6"><a href="#events" class="active">Events</a></li>
-          <li class="tab col s6"><a href="#proposals">Proposals</a></li>
-          </ul>
-      </div>
-
-      <!-- Events Tab -->
-      <div id="events" class="col s12">
-        <% @events.each do |event| %>
-          <%= render 'event', event: event %>
+      <!-- Events section -->
+      <div class="col-xs-12 col-md-6">
+      <%= link_to group_events_path(@group) do %>
+        <div class="panel panel-default text-center">
+          <div class="panel-body">
+             <%= @group.events.size %> Events
+          </div>
+        </div>
         <% end %>
       </div>
 
-      <!-- Proposals Tab -->
-      <div id="proposals" class="col s12">
-        <% @proposals.each do |proposal| %>
-          <%= render 'proposals/proposal', proposal: proposal %>
+      <!-- Proposals section -->
+      <div class="col-xs-12 col-md-6">
+      <%= link_to group_proposals_path(@group) do %>
+        <div class="panel panel-default text-center">
+          <div class="panel-body">
+             <%= @group.proposals.size %> Proposals
+          </div>
+        </div>
         <% end %>
       </div>
     </div>
-    <!-- card for group events -->
-<!--     <div class="card">
-      <div class="card-content">
-        <span class="card-title"><%#= link_to 'Events', group_events_path(@group) %></span>
-        <%# @group.events.each do |event| %>
-        <p><%#= link_to event.name, event_path(event) %></p>
-        <%# end %>
-      </div>
-    </div> -->
-
-    <!-- card for group proposals -->
-<!--     <div class="card">
-      <div class="card-content">
-        <span class="card-title"><%#= link_to 'Proposals', group_proposals_path(@group) %></span>
-        <%# @group.proposals.each do |proposal| %>
-        <p><%#= link_to proposal.name, proposal_path(proposal) %></p>
-        <%# end %>
-      </div>
-    </div> -->
-
-    <!-- card for group members -->
-<!--     <div class="card">
-      <div class="card-content">
-        <span class="card-title">Members</span>
-        <%# @group.users.each do |user| %>
-        <p><%#= link_to user.username, profile_path(user.username) %></p>
-        <%# end %>
-      </div>
-    </div> -->
   </div>
 </div>
-
-<%= render 'layouts/fab', group: @group %>

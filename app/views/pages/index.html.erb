@@ -1,21 +1,17 @@
 <header>
 	<div class="row">
-		<div class="col m8 s12 offset-m2">
-			<div class="header-content">
-				<div class="header-content-text">
+		<div class="col-xs-12">
+			<div class="header-content center-block">
+				<div class="text-center">
 					<h1>LYVE</h1>
 					<p>Manage events in your groups.</p>
 					<p>Vote on new event ideas.</p>
 				</div>
 				<div class="row">
-				<div class="col m4 offset-m4">
-
-				<!-- TODO: figure out new workflow with group-first routing -->
-				<%#= link_to 'Events', events_path, class: "splash-button waves-effect waves-light amber darken-1 btn" %>
-				<%#= link_to 'Proposals', proposals_path, class:"splash-button waves-effect waves-light amber darken-1 btn" %>
-				<%= link_to 'Register', new_user_registration_path, class:"splash-button waves-effect waves-light amber darken-1 btn" %>
-				<%= link_to 'Log In', new_user_session_path, class:"splash-button waves-effect waves-light amber darken-1 btn" %>
-				</div>
+					<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+						<%= link_to 'Register', new_user_registration_path, class:"btn btn-primary btn-block" %>
+						<%= link_to 'Log In', new_user_session_path, class:"btn btn-primary btn-block" %>
+					</div>
 				</div>
 			</div>
 		</div>

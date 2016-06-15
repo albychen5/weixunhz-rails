@@ -1,11 +1,11 @@
 class ProposalsController < ApplicationController
   before_action :set_proposal, only: [:show, :edit, :update, :destroy, :like, :unlike]
+  before_action :set_group, only: [:index, :new, :create]
 
   # GET /proposals
   # GET /proposals.json
   def index
-    @proposals = Proposal.order(cached_votes_up: :desc)
-    @group = Group.find_by(params[:group_id])
+    @proposals = Proposal.where(group_id: params[:group_id]).order(cached_votes_up: :desc)
   end
 
   # GET /proposals/1
@@ -16,12 +16,6 @@ class ProposalsController < ApplicationController
   # GET /proposals/new
   def new
     @proposal = Proposal.new
-    @group = Group.find_by(params[:group_id])
-    @groups = Group.all
-  end
-
-  # GET /proposals/1/edit
-  def edit
     @groups = Group.all
   end
 
@@ -29,7 +23,6 @@ class ProposalsController < ApplicationController
   # POST /proposals.json
   def create
     @proposal = Proposal.new(proposal_params)
-    @group = Group.find_by(params[:group_id])
     @groups = Group.all
     @proposal.user_id = current_user.id if current_user
 
@@ -42,6 +35,11 @@ class ProposalsController < ApplicationController
         format.json { render json: @proposal.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /proposals/1/edit
+  def edit
+    @groups = Group.all
   end
 
   # PATCH/PUT /proposals/1
@@ -82,6 +80,10 @@ class ProposalsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_proposal
       @proposal = Proposal.find(params[:id])
+    end
+
+    def set_group
+      @group = Group.find_by(params[:group_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

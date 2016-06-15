@@ -1,10 +1,20 @@
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-body text-center">
+        <span class="section-title"><%= @group.name %> Events</span><br>
+        <%= link_to "Back to group", group_path(@group), class: 'btn btn-primary btn-xs' %>
+        <%= link_to "New Event", new_group_event_path(@group), class: 'btn btn-primary btn-xs' %> 
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="events">
   <% @events.each do |event| %>
     <%= render 'event', event: event %>
   <% end %>
 </div>
-
-<%= render 'layouts/fab', group: @group %>
 
 <div class="text-center" id="paginator">
 	<%= link_to_next_page @events, 'More Events', remote: true, id: 'load_more' %>

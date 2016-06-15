@@ -15,13 +15,4 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
-//= require materialize-sprockets
-
-// JS required for materialize::form for Simple Form
-//= require materialize-sprockets
-//= require materialize-form
-
-$(document).ready(function() {
-  window.materializeForm.init()
-});
-// End JS for materialize::form
+//= require bootstrap-sprockets

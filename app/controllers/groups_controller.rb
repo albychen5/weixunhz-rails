@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-	before_action :set_group, except: [:index]
+	before_action :set_group, only: [:edit, :update, :show, :destroy]
 
 	def index
 		#index shows all groups current user is a part of
@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
 			@group_relationship.admin = true
 			@group_relationship.user_id = current_user.id
 			@group_relationship.group_id = @group.id
-			redirect_to events_path
+			redirect_to groups_path
 		else
 			render :new
 		end
@@ -31,8 +31,8 @@ class GroupsController < ApplicationController
 	end
 
 	def update
-		if @group.update
-			redirect_to events_path
+		if @group.update(group_params)
+			redirect_to groups_path
 		else
 			render :edit
 		end
@@ -45,7 +45,7 @@ class GroupsController < ApplicationController
 
 	def destroy
 		@group.destroy
-		redirect_to events_path
+		redirect_to groups_path
 	end
 
 	private

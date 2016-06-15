@@ -33,9 +33,12 @@ gem 'factory_girl_rails' #factory creation gem
 gem 'devise' #authentication gem
 gem 'kaminari' #pagination gem
 gem 'acts_as_votable', '~> 0.10.0' #voting gem
-gem 'materialize-sass'
+gem 'bootstrap-sass', '~> 3.3.6'
 gem "font-awesome-rails"
-gem 'materialize-form'
+
+# Materialize is very uncompromising and difficult to customize - removing it
+# gem 'materialize-sass'
+# gem 'materialize-form'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

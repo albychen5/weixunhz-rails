@@ -1,17 +1,26 @@
+<!-- Event panel -->
 <%= render 'event', event: @event %>
-<%= render 'event_info', event: @event %>
+
+<!-- Event comment panel -->
 <div class="row">
-	<div class="col s12 m8 offset-m2">
-		<div class="card-panel">
-			<div class="center-align">
-			<%= link_to "Back", :back %>
-			<%#if user_signed_in? && @event.user.id == current_user.id %>
-			|
-			<%= link_to "Edit event", edit_event_path(@event) %>
-			<%# else %>
-			<%# end %>
-			|
-			<%= link_to "Participants", event_attendees_path(@event) %>
-		</div>
-	</div>
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        Comments: 
+        <hr>
+        <!-- Comments section -->
+        <%#= render 'comments/comment' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="text-right">
+      <%= @event.attendees.size %> attending
+			<%= link_to "Participants", event_attendees_path(@event), class:"btn btn-primary btn-sm" %>
+			<%= link_to "Back", :back, class:"btn btn-primary btn-sm"%>
+    </div>
+  </div>
 </div>

@@ -1,11 +1,9 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <%= simple_form_for [@group, @proposal] do |f| %>
+    <%= simple_form_for @group do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :group_id, collection: @groups, label_method: :name, label: "Select a group", selected: @group %>
-
       <%= f.input :name %>
       <%= f.input :info %>
     </div>

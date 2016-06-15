@@ -5,11 +5,12 @@ class EventsController < ApplicationController
 
 	def index
 		@group = Group.find_by(params[:group_id])
-		if user_signed_in?
-			@events = current_user.events_feed.order('created_at DESC').page params[:page]
-		else
-			@events = Event.all.order('created_at DESC').page params[:page]
-		end
+		@events = Event.where(group_id: params[:group_id]).order('created_at DESC').page params[:page]
+		# if user_signed_in?
+		# 	@events = current_user.events_feed.order('created_at DESC').page params[:page]
+		# else
+		# 	@events = Event.all.order('created_at DESC').page params[:page]
+		# end
 	end
 
 	def new

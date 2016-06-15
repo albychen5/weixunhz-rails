@@ -1,22 +1,23 @@
 <div class="row">
-    <div class="col s12 m8 offset-m2">
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">Create Your Account</span>
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-body text-center">
+        <span class="section-title">Create Your Account</span>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-body">
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <%= f.error_notification %>
-            <div class="row">
-            <div class="col s12 m4 offset-m4">
-              <%= f.input :username, required: true, label: 'username', placeholder: 'required', input_html: { class: 'input-lg' } %>
-              <%= f.input :phone_number, required: false, label: 'phone number', placeholder: 'optional', input_html: { class: 'input-lg' } %>
-              <%= f.input :wechat_id, required: false, label: 'wechat id', placeholder: 'optional', input_html: { class: 'input-lg' } %>
-              <%= f.input :email, required: true, autofocus: false, label: 'email', placeholder: 'required', input_html: { class: 'input-lg' } %>
-              <%= f.input :password, required: true, label: false, placeholder: 'Password', input_html: { class: 'input-lg' } %>
-              <%= f.input :password_confirmation, required: true, label: false, placeholder: 'Confirm Password', input_html: { class: 'input-lg' } %>
-              <%= f.button :submit, "Sign up", class: 'btn-lg btn-info btn-block' %>
-            </div>
-            </div>
-          <% end %>
+        <%= f.error_notification %>
+        <%= f.input :username, required: true, label: 'Username', placeholder: 'required' %>
+        <%= f.input :phone_number, required: false, label: 'Phone Number', placeholder: 'optional' %>
+        <%= f.input :wechat_id, required: false, label: 'WeChat ID', placeholder: 'optional' %>
+        <%= f.input :email, required: true, autofocus: false, label: 'Email', placeholder: 'required' %>
+        <%= f.input :password, required: true, label: 'Password', placeholder: 'required' %>
+        <%= f.input :password_confirmation, required: true, label: 'Confirm Password', placeholder: 'required' %>
+        <%= f.button :submit, "Sign up", class: 'btn btn-primary btn-block' %>
+        <% end %>
       </div>
     </div>
   </div>

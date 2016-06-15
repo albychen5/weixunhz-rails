@@ -1,29 +1,31 @@
-<div class="card">
-	<!-- Title of Proposal -->
-	<div class="card-content">
-		<div class="row ">
-			<div class="col s12 l12">
-				<span class="card-title"><%= proposal.name %></span>
-				<p><%= proposal.info %></p>
-			</div>
-		</div>
-
-<!-- 		<div class="row">
-			<div class="col s11 offset-s1">
-			Created by: <%#= proposal.user.username %>
-			</div>
-		</div> -->
-
-		<div class="row valign-wrapper">
-			<div class="col s4 chip valign center-align">
-			<%= proposal.votes_for.size %> <%= fa_icon "heart" %>
-			</div>
-			<div class="col s4 center-align">
-			<%= button_to 'Like', like_proposal_path(proposal), method: :get, class: "amber lighten-2 btn" %>
-			</div>
-			<div class="col s4 center-align">
-			<%= button_to 'Edit', edit_proposal_path(proposal), method: :get, class: "amber lighten-2 btn" %>
-			</div>
-		</div>
-	</div>
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <!-- Content section -->
+        <div class="row">
+          <div class="col-xs-2">
+            <%= proposal.votes_for.size %> <%= fa_icon "heart" %>
+          </div>
+          <div class="col-xs-10">
+            <span class="event-name"><%= proposal.name %></span><br>
+            <%= proposal.info %><br>
+          </div>
+        </div>
+        <hr>
+        <!-- Action footer section -->
+        <div class="row">
+          <div class="col-xs-4">
+            <%= fa_icon "user" %> <%= link_to proposal.user.username, profile_path(proposal.user.username) %>
+          </div>
+          <div class="col-xs-8 text-right">
+            <% if user_signed_in? && current_user == proposal.user %>
+              <%= link_to "Edit", edit_proposal_path(proposal), class:"btn btn-primary btn-sm" %>
+            <% end %>
+	            <%= link_to "Like", like_proposal_path(proposal), class:"btn btn-primary btn-sm" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

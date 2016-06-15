@@ -1,25 +1,32 @@
-<div class="navbar">
-  <nav class="amber darken-1" role="navigation">
-    <div class="nav-wrapper container">
-      <div class="brand-logo hide-on-med-and-down">
-        <%= link_to "LYVE微醺", root_path %>
-      </div>
-      <ul id="nav-mobile" class="right">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "LYVE微醺", root_path, class: "navbar-brand" %>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-        <li>
-          <%#= render 'notifications/notification_dropdown' %>
+<!--         <li>
+          <%#= link_to (fa_icon "calendar"), "#" %>
         </li>
         <li>
-          <%#= link_to (fa_icon "heart-o"), group_proposals_path %>
-        </li>
-        <li>
-          <%= link_to (fa_icon "calendar"), "#" %>
-        </li>
-        <li>
-          <%= link_to (fa_icon "search"), "#" %>
-        </li>
-        <li>
-          <%= link_to (fa_icon "user") + " " + current_user.username.to_s, destroy_user_session_path, method: :delete %>
+          <%#= link_to (fa_icon "search"), "#" %>
+        </li> -->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= (fa_icon "user") + ' ' + current_user.username.to_s + ' '%><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Profile', profile_path(current_user.username) %></li>
+            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+          </ul>
         </li>
         <% else %>
         <li>
@@ -30,6 +37,6 @@
         </li>
         <% end %>
       </ul>
-    </div>
-  </nav>
-</div>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
