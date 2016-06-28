@@ -1,10 +1,10 @@
 class EventsController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
+	before_action :set_group, only: [:index, :new, :create]
 	before_action :set_event, only: [:show, :edit, :update, :destroy, :like, :unlike]
 	before_action :event_owner_verification, only: [:edit, :update, :destroy]
 
 	def index
-		@group = Group.find(params[:group_id])
 		@events = Event.where({group_id: params[:group_id]}).order('created_at DESC').page params[:page]
 		# if user_signed_in?
 		# 	@events = current_user.events_feed.order('created_at DESC').page params[:page]
@@ -15,13 +15,11 @@ class EventsController < ApplicationController
 
 	def new
 		@event = current_user.events.build
-		@group = Group.find_by(params[:group_id])
 		@groups = Group.all
 	end
 
 	def create
 		@event = current_user.events.build(event_params)
-		@group = Group.find_by(params[:group_id])
 		@groups = Group.all
 		if @event.save
 			flash[:success] = "Event created!"
@@ -82,6 +80,10 @@ class EventsController < ApplicationController
 	
 	def event_params
 		params.require(:event).permit(:image, :name, :location, :date, :event_time, :details, :group_id)
+	end
+
+	def set_group
+		@group = Group.find(params[:group_id])
 	end
 
 	def set_event
