@@ -5,7 +5,7 @@ class ProposalsController < ApplicationController
   # GET /proposals
   # GET /proposals.json
   def index
-    @proposals = Proposal.where(group_id: params[:group_id]).order(cached_votes_up: :desc)
+    @proposals = Proposal.where({group_id: params[:group_id]}).order(cached_votes_up: :desc)
   end
 
   # GET /proposals/1
