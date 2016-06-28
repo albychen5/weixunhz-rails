@@ -83,7 +83,7 @@ class ProposalsController < ApplicationController
     end
 
     def set_group
-      @group = Group.find_by(params[:group_id])
+      @group = Group.find(params[:group_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

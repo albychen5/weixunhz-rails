@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 	before_action :event_owner_verification, only: [:edit, :update, :destroy]
 
 	def index
-		@group = Group.find_by(params[:group_id])
+		@group = Group.find(params[:group_id])
 		@events = Event.where({group_id: params[:group_id]}).order('created_at DESC').page params[:page]
 		# if user_signed_in?
 		# 	@events = current_user.events_feed.order('created_at DESC').page params[:page]
