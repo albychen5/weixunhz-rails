@@ -61,7 +61,7 @@ class ProposalsController < ApplicationController
   def destroy
     @proposal.destroy
     respond_to do |format|
-      format.html { redirect_to proposals_url, notice: 'Proposal was successfully destroyed.' }
+      format.html { redirect_to group_proposals_url(@proposal.group_id), notice: 'Proposal was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

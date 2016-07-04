@@ -3,7 +3,6 @@ class Event < ActiveRecord::Base
 	belongs_to :group
 	has_many :attendees, dependent: :destroy
 	has_many :comments, dependent: :destroy
-	has_many :notifications, dependent: :destroy
 
 	validates :user_id, presence: true
 	validates :group_id, presence: true

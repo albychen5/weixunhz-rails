@@ -51,7 +51,7 @@ class EventsController < ApplicationController
 	def destroy
 		@event.destroy
 		flash[:success] = "Event deleted!"
-		redirect_to events_path
+		redirect_to group_events_path(@event.group_id)
 	end
 
 	# def like
@@ -79,7 +79,7 @@ class EventsController < ApplicationController
 	private
 	
 	def event_params
-		params.require(:event).permit(:image, :name, :location, :date, :event_time, :details, :group_id)
+		params.require(:event).permit(:image, :name, :location, :date, :event_time, :details, :group_id, :link)
 	end
 
 	def set_group
