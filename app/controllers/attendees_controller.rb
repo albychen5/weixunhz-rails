@@ -1,5 +1,5 @@
 class AttendeesController < ApplicationController
-	before_action :set_event
+	before_action :set_event, only: [:index, :new, :create]
 	before_action :set_attendee, only: [:edit, :update]
 	def index
 		@attendees = @event.attendees.all.order("created_at ASC")
@@ -29,7 +29,7 @@ class AttendeesController < ApplicationController
 	def update
 		if @attendee.update(attendee_params)
 			flash[:success] = "Attendee Updated"
-			redirect_to event_attendees_path(@event)
+			redirect_to event_attendees_path(@attendee.event_id)
 		else
 			render 'edit'
 		end

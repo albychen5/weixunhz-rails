@@ -1,21 +1,21 @@
 <% @title = "Edit Attendee" %>
 
-<div class="row">
-	<div class="col s12 m6 offset-m3">
-		<div class="card">
-			<div class="card-content">
-				<span class="card-title">Editing Attendee for <%= @event.name %></span>
-				<%= form_for(@attendee, url: event_attendee_path, method: :patch) do |f| %>
-				<%= f.label :name %>
-				<%= f.text_field :name %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= simple_form_for @attendee do |f| %>
+      <%= f.error_notification %>
+      <% if @attendee.errors.any? %>
+      <ul>
+        <% @attendee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+      <% end %>
 
-				<%= f.label :phone_number %>
-				<%= f.text_field :phone_number %>
+      <%= f.input :name, label: 'Attendee Name' %>
+      <%= f.input :phone_number, label: 'Phone Number' %>
 
-				<%= f.submit "Update Attendee", class: "btn waves-effect waves-light" %>
-				<% end %>
-			</div>
-		</div>
-		<%= button_to 'Back', event_attendees_path(@event),  method: :get, class: "btn waves-effect waves-light" %>
-	</div>
+      <%= f.button :submit, 'Edit Attendee', class: 'btn btn-success btn-block' %>
+    <% end %>
+  </div>
 </div>

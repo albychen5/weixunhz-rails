@@ -1,13 +1,19 @@
-<div class="row">
-  <div class="col s12 m6 offset-m3">
-    <%= form_for(@attendee, url: event_attendees_path, method: :post) do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+<div class="panel panel-default">
+  <div class="panel-body">
+	  <%= simple_form_for @attendee do |f| %>
+		  <%= f.error_notification %>
+		  <% if @event.errors.any? %>
+		  <ul>
+		  	<% @event.errors.full_messages.each do |message| %>
+		  	<li><%= message %></li>
+		  	<% end %>
+		  </ul>
+		  <% end %>
 
-      <%= f.label :phone_number %>
-      <%= f.text_field :phone_number %>
+	    <%= f.input :name, label: 'Attendee Name' %>
+	    <%= f.input :phone_number, label: 'Phone Number' %>
 
-      <%= f.submit "Add Attendee", class: "btn waves-effect waves-light" %>
-    <% end %>
+	    <%= f.button :submit, 'Add Attendee', class: 'btn btn-success btn-block' %>
+	  <% end %>
   </div>
 </div>
